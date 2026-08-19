@@ -329,9 +329,37 @@ function renderDashboard(){
 }
 function csvParse(text){
  const rows=[];let row=[],cell="",q=false;
- for(let i=0;i<text.length;i++){const ch=text[i],nx=text[i+1];if(ch=='"'){if(q&&nx=='"'){cell+='"';i++}else q=!q}else if(ch==","&&!q){row.push(cell);cell=""}else if((ch=="\n"||ch=="\r")&&!q){if(ch=="\r"&&nx=="\n")i++;row.push(cell);rows.push(row);row=[];cell=""}else cell+=ch}
+ for(let i=0;i<text.length;i++){
+  const ch=text[i],nx=text[i+1];
+  if(ch=='"'){
+   if(q&&nx=='"'){cell+='"';i++}else q=!q
+  }else if(ch==","&&!q){
+   row.push(cell);cell=""
+  }else if((ch=="\n"||ch=="\r")&&!q){
+   if(ch=="\r"&&nx=="\n")i++;
+   row.push(cell);rows.push(row);row=[];cell=""
+  }else cell+=ch
+ }
  if(cell||row.length){row.push(cell);rows.push(row)}
- const h=rows.shift()||[];return rows.filter(r=>r.some(x=>String(x).trim())).map(r=>Object.fromEntries(h.map((k,i)=>[String(k).trim(),r[i]??""])))
+
+ // Preserve duplicate headers instead of overwriting them.
+ // Example in counsellor sheets: Date, ... First Follow Up, Date, Second Follow up, Date...
+ const rawHeaders=rows.shift()||[], seen={}, headers=rawHeaders.map((h,i)=>{
+  let key=String(h??"").trim();
+  if(!key) key="__blank_"+i;
+  const base=key;
+  seen[base]=(seen[base]||0)+1;
+  if(seen[base]>1) key=base+"__"+seen[base];
+  return key
+ });
+
+ return rows
+  .filter(r=>r.some(x=>String(x??"").trim()))
+  .map(r=>{
+   const obj={};
+   headers.forEach((k,i)=>obj[k]=r[i]??"");
+   return obj
+  })
 }
 async function readFileRows(file,sheetName){
  if(file.name.toLowerCase().endsWith(".csv")){
@@ -361,11 +389,11 @@ $("previewBtn").onclick=async()=>{
    rows.forEach((r,idx)=>{
     let date,source,campaign,counsellor,country,name,phone;
     if(dept==="Study Abroad"){
-     date=parseDate(r["Date"]);source=sourceCategory(dept,r["Channel"]);campaign=String(r["Campaign M/G"]||"Unspecified Campaign").trim()||"Unspecified Campaign";
+     date=parseDate(r["Date"]||r["Date_1"]||r["Date__1"]);source=sourceCategory(dept,r["Channel"]);campaign=String(r["Campaign M/G"]||"Unspecified Campaign").trim()||"Unspecified Campaign";
      counsellor=String(r["Counsellor"]||r["Counsellors"]||$("importCounsellor").value||"").trim();country=String(r["Country"]||r["Destination"]||$("importCountry").value||"").trim();
      name=r["Name"]||"";phone=r["Contact Number"]||"";
     }else{
-     date=parseDate(r["Date"]);source=sourceCategory(dept,r["BASE"]);campaign=String(r["CAMP DETAILS"]||"Unspecified Campaign").trim()||"Unspecified Campaign";
+     date=parseDate(r["Date"]||r["Date_1"]||r["Date__1"]);source=sourceCategory(dept,r["BASE"]);campaign=String(r["CAMP DETAILS"]||"Unspecified Campaign").trim()||"Unspecified Campaign";
      counsellor=String(r["Counsellors"]||r["Contacted By"]||"").trim();country="";name=r["Name"]||"";phone=r["Contact Number"]||"";
     }
     if(!date){invalid++;return}
