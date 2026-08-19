@@ -116,7 +116,7 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
  <div class="grid grid-2">
   <div class="panel">
    <h3 style="margin-top:0">Bulk Import Lead Sheets</h3>
-   <div class="notice">The system processes the files in your browser and stores only <b>aggregated reporting data + anonymous duplicate fingerprints</b>. Student names, emails and phone numbers are not saved in the dashboard database.</div>
+   <div class="notice">The system processes the files in your browser and stores only <b>aggregated reporting data + anonymous duplicate fingerprints</b>. Student names, emails and phone numbers are not saved in the dashboard database. <b>Duplicate rule:</b> the same phone number appearing more than once in the same department and month is counted once.</div>
    <hr>
    <div class="field"><label>Department / File Type</label>
     <select id="importDept"><option>Study Abroad</option><option>SLICM</option></select>
@@ -232,7 +232,7 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
 
 <script>
 const $=id=>document.getElementById(id);
-const KEY="aia_marketing_performance_v3";
+const KEY="aia_marketing_performance_v4";
 const defaultDb={leadAgg:[],fingerprints:[],finance:[],imports:[]};
 let db=loadDb(), previewRows=[];
 function loadDb(){try{const x=JSON.parse(localStorage.getItem(KEY));return x&&x.leadAgg?x:structuredClone(defaultDb)}catch(e){return structuredClone(defaultDb)}}
@@ -252,6 +252,14 @@ function parseDate(v){
 }
 function hashStr(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(36)}
 function norm(s){return String(s??"").trim().toLowerCase().replace(/\s+/g," ")}
+function fieldKey(s){return String(s??"").toLowerCase().replace(/[^a-z0-9]+/g,"")}
+function getField(row,names){
+ const wanted=names.map(fieldKey);
+ for(const [k,v] of Object.entries(row)){
+  if(wanted.includes(fieldKey(k))) return v;
+ }
+ return "";
+}
 function unique(a){return [...new Set(a.filter(Boolean))].sort()}
 function setSelect(sel,items,all=true,keep=null){let old=keep??sel.value;sel.innerHTML=(all?'<option>All</option>':'')+items.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join("");if([...sel.options].some(o=>o.value===old))sel.value=old}
 function sourceCategory(dept,raw){
@@ -385,23 +393,38 @@ $("previewBtn").onclick=async()=>{
  for(const file of files){
   try{
    const result=await readFileRows(file,dept==="SLICM"?$("slicmSheet").value:null),rows=result.rows;
-   let usable=0,dupes=0,invalid=0;
+   let usable=0,dupes=0,invalid=0,rawRows=rows.length;
    rows.forEach((r,idx)=>{
     let date,source,campaign,counsellor,country,name,phone;
     if(dept==="Study Abroad"){
-     date=parseDate(r["Date"]||r["Date_1"]||r["Date__1"]);source=sourceCategory(dept,r["Channel"]);campaign=String(r["Campaign M/G"]||"Unspecified Campaign").trim()||"Unspecified Campaign";
-     counsellor=String(r["Counsellor"]||r["Counsellors"]||$("importCounsellor").value||"").trim();country=String(r["Country"]||r["Destination"]||$("importCountry").value||"").trim();
-     name=r["Name"]||"";phone=r["Contact Number"]||"";
+     date=parseDate(getField(r,["Date","Lead Date","Received Date","Created Date"]));
+     const rawSource=getField(r,["Channel","Lead Source","Source","Base"]);
+     source=sourceCategory(dept,rawSource);
+     campaign=String(getField(r,["Campaign M/G","Campaign MG","Campaign M G","Campaign","Campaign Name","Campaign Details","CAMP DETAILS"])||"Unspecified Campaign").trim()||"Unspecified Campaign";
+     counsellor=String(getField(r,["Counsellor","Counsellors","Assigned Counsellor","Contacted By"])||$("importCounsellor").value||"").trim();
+     country=String(getField(r,["Country","Destination","Country / Destination"])||$("importCountry").value||"").trim();
+     name=getField(r,["Name","Student Name","Lead Name"])||"";
+     phone=getField(r,["Contact Number","Mobile Number","Mobile","Phone","Phone Number"])||"";
     }else{
-     date=parseDate(r["Date"]||r["Date_1"]||r["Date__1"]);source=sourceCategory(dept,r["BASE"]);campaign=String(r["CAMP DETAILS"]||"Unspecified Campaign").trim()||"Unspecified Campaign";
-     counsellor=String(r["Counsellors"]||r["Contacted By"]||"").trim();country="";name=r["Name"]||"";phone=r["Contact Number"]||"";
+     date=parseDate(getField(r,["Date","Lead Date","Received Date","Created Date"]));
+     const rawSource=getField(r,["BASE","Channel","Lead Source","Source"]);
+     source=sourceCategory(dept,rawSource);
+     campaign=String(getField(r,["CAMP DETAILS","Campaign M/G","Campaign","Campaign Name","Campaign Details"])||"Unspecified Campaign").trim()||"Unspecified Campaign";
+     counsellor=String(getField(r,["Counsellors","Counsellor","Contacted By","Assigned Counsellor"])||"").trim();
+     country="";
+     name=getField(r,["Name","Student Name","Lead Name"])||"";
+     phone=getField(r,["Contact Number","Mobile Number","Mobile","Phone","Phone Number"])||"";
     }
     if(!date){invalid++;return}
-    const month=monthKey(date);const fp=hashStr([dept,date,norm(name),norm(phone),norm(campaign),norm(source)].join("|"));
+    const month=monthKey(date);
+    // Management lead count is based on a monthly unique lead.
+    // Prefer phone number; if no phone exists, fall back to name+date.
+    const identity=norm(phone)?("p:"+norm(phone)):("n:"+norm(name)+"|d:"+date);
+    const fp=hashStr([dept,month,identity].join("|"));
     const duplicate=db.fingerprints.includes(fp)||previewRows.some(x=>x.fp===fp);if(duplicate)dupes++;
     previewRows.push({department:dept,date,month,source,campaign,counsellor,country,fp,duplicate,file:file.name});usable++
    });
-   fileStats.push({file:file.name,rows:rows.length,usable,dupes,invalid})
+   fileStats.push({file:file.name,rawRows,usable,dupes,invalid,importable:usable-dupes})
   }catch(e){warnings.push(file.name+": "+e.message)}
  }
  const fresh=previewRows.filter(x=>!x.duplicate);
@@ -410,17 +433,19 @@ $("previewBtn").onclick=async()=>{
  const campaigns={};fresh.forEach(x=>campaigns[x.campaign]=(campaigns[x.campaign]||0)+1);
  $("previewBox").innerHTML=`
   ${warnings.length?'<div class="warnbox">'+warnings.map(esc).join("<br>")+'</div>':""}
-  <div class="grid grid-4">
-   <div class="kpi"><div class="label">NEW LEADS</div><div class="value">${fresh.length}</div></div>
+  <div class="grid grid-6">
+   <div class="kpi"><div class="label">RAW ROWS</div><div class="value">${fileStats.reduce((a,x)=>a+x.rawRows,0)}</div></div>
+   <div class="kpi teal"><div class="label">VALID DATED ROWS</div><div class="value">${previewRows.length}</div></div>
    <div class="kpi orange"><div class="label">DUPLICATES SKIPPED</div><div class="value">${previewRows.length-fresh.length}</div></div>
-   <div class="kpi teal"><div class="label">MONTHS</div><div class="value">${Object.keys(months).length}</div></div>
-   <div class="kpi green"><div class="label">CAMPAIGNS</div><div class="value">${Object.keys(campaigns).length}</div></div>
+   <div class="kpi green"><div class="label">UNIQUE LEADS TO IMPORT</div><div class="value">${fresh.length}</div></div>
+   <div class="kpi purple"><div class="label">MONTHS</div><div class="value">${Object.keys(months).length}</div></div>
+   <div class="kpi"><div class="label">CAMPAIGNS</div><div class="value">${Object.keys(campaigns).length}</div></div>
   </div>
   <div class="grid grid-2" style="margin-top:12px">
    <div><b>Month breakdown</b><div class="note">${Object.entries(months).sort((a,b)=>new Date("1 "+b[0])-new Date("1 "+a[0])).map(([k,v])=>`${esc(k)}: <b>${v}</b>`).join("<br>")||"None"}</div></div>
    <div><b>Source breakdown</b><div class="note">${Object.entries(sources).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`${esc(k)}: <b>${v}</b>`).join("<br>")||"None"}</div></div>
   </div>
-  <hr><div class="note">${fileStats.map(x=>`${esc(x.file)} — ${x.usable} dated rows, ${x.dupes} already imported, ${x.invalid} rows without a valid date`).join("<br>")}</div>`;
+  <hr><div class="note"><b>Import audit:</b><br>${fileStats.map(x=>`${esc(x.file)} — Raw rows: <b>${x.rawRows}</b> • Valid dated rows: <b>${x.usable}</b> • Duplicates: <b>${x.dupes}</b> • Invalid/no date: <b>${x.invalid}</b> • Unique leads to import: <b>${x.importable}</b>`).join("<br>")}</div>`;
  $("importActions").style.display=fresh.length?"flex":"none"
 };
 $("confirmImport").onclick=()=>{
