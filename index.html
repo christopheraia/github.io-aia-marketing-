@@ -12,12 +12,12 @@
 }
 *{box-sizing:border-box}
 body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
-header{background:linear-gradient(135deg,#0d2745,#174f82);color:white;position:sticky;top:0;z-index:30;box-shadow:0 7px 25px rgba(16,42,67,.16)}
+header{background:linear-gradient(135deg,#0d2745,#174f82);color:#fff;position:sticky;top:0;z-index:30;box-shadow:0 7px 25px rgba(16,42,67,.16)}
 .header{max-width:1500px;margin:auto;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
 .brand h1{font-size:20px;margin:0 0 3px}.brand p{font-size:12px;color:#d8e6f4;margin:0}
 nav{display:flex;gap:6px;flex-wrap:wrap}
-nav button{border:0;background:rgba(255,255,255,.1);color:#fff;padding:9px 12px;border-radius:9px;cursor:pointer;font-weight:600}
-nav button.active{background:white;color:var(--navy)}
+nav button{border:0;background:rgba(255,255,255,.1);color:#fff;padding:9px 12px;border-radius:9px;cursor:pointer;font-weight:700}
+nav button.active{background:#fff;color:var(--navy)}
 main{max-width:1500px;margin:auto;padding:20px}
 .view{display:none}.view.active{display:block}
 .panel,.kpi{background:var(--card);border:1px solid var(--line);border-radius:15px;box-shadow:0 5px 18px rgba(20,40,70,.05)}
@@ -25,8 +25,8 @@ main{max-width:1500px;margin:auto;padding:20px}
 .kpi:before{content:"";position:absolute;inset:0 auto 0 0;width:5px;background:var(--blue)}
 .kpi.green:before{background:var(--green)}.kpi.orange:before{background:var(--orange)}.kpi.red:before{background:var(--red)}.kpi.teal:before{background:var(--teal)}.kpi.purple:before{background:var(--purple)}
 .kpi .label{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.04em}.kpi .value{font-size:27px;font-weight:800;margin-top:5px}.kpi .sub{font-size:11px;color:var(--muted);margin-top:3px}
-.grid{display:grid;gap:13px}.grid-6{grid-template-columns:repeat(6,minmax(0,1fr))}.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}.field{margin-bottom:11px}.filters .field{margin:0;min-width:170px}
+.grid{display:grid;gap:13px}.grid-6{grid-template-columns:repeat(6,minmax(0,1fr))}.grid-5{grid-template-columns:repeat(5,minmax(0,1fr))}.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}.field{margin-bottom:11px}.filters .field{margin:0;min-width:165px}
 label{display:block;font-size:11px;font-weight:800;color:#526172;margin-bottom:6px}
 select,input,textarea{width:100%;border:1px solid #ccd9e6;border-radius:9px;background:#fff;padding:10px 11px;font:inherit;color:var(--text)}
 textarea{min-height:75px;resize:vertical}
@@ -35,106 +35,155 @@ textarea{min-height:75px;resize:vertical}
 .topline{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .section-title{display:flex;align-items:center;justify-content:space-between;margin:22px 0 9px;gap:10px}.section-title h2{font-size:16px;margin:0}.section-title span,.note{font-size:12px;color:var(--muted);line-height:1.5}
 table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:9px;border-bottom:1px solid #e5ebf1;text-align:left;vertical-align:top}th{font-size:10px;text-transform:uppercase;color:#5c6b7a;letter-spacing:.04em;background:#f7f9fc;position:sticky;top:0}
-.table-wrap{border:1px solid var(--line);border-radius:11px;overflow:auto;max-height:520px}
-.badge{display:inline-flex;padding:4px 8px;border-radius:99px;font-size:10px;font-weight:800;background:#edf3fa;color:#2a5b87}.badge.good{background:#eaf7ef;color:#2b6b47}.badge.warn{background:#fff3df;color:#9a5c00}.badge.sa{background:#eaf2ff;color:#24599b}.badge.sl{background:#eeeafb;color:#5949a7}
+.table-wrap{border:1px solid var(--line);border-radius:11px;overflow:auto;max-height:540px}
+.badge{display:inline-flex;padding:4px 8px;border-radius:99px;font-size:10px;font-weight:800;background:#edf3fa;color:#2a5b87}.badge.good{background:#eaf7ef;color:#2b6b47}.badge.warn{background:#fff3df;color:#9a5c00}.badge.sa{background:#eaf2ff;color:#24599b}.badge.sl{background:#eeeafb;color:#5949a7}.badge.lock{background:#fff3df;color:#8b5b00}
 .notice{padding:11px 13px;border-radius:10px;background:#eef6ff;border:1px solid #c9def5;color:#315a7f;font-size:12px;line-height:1.5}
 .warnbox{padding:11px 13px;border-radius:10px;background:#fff8e7;border:1px solid #f1d49b;color:#795000;font-size:12px;line-height:1.5}
 .success{padding:10px 12px;border-radius:9px;background:#eaf7ef;color:#286340;font-size:12px;display:none;margin-bottom:12px}
 .mapping{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.file-chip{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:10px;margin:7px 0;background:#fbfcfe}
-.bar-row{display:grid;grid-template-columns:140px 1fr 70px;gap:9px;align-items:center;margin:9px 0;font-size:11px}.bar-track{height:9px;background:#e8eef4;border-radius:99px;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,#2463a7,#4e95dc);border-radius:99px}
+.bar-row{display:grid;grid-template-columns:145px 1fr 70px;gap:9px;align-items:center;margin:9px 0;font-size:11px}.bar-track{height:9px;background:#e8eef4;border-radius:99px;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,#2463a7,#4e95dc);border-radius:99px}
 .empty{padding:25px;text-align:center;color:#7b8a98}
 hr{border:0;border-top:1px solid var(--line);margin:17px 0}
 .dept-card{padding:14px;border:1px solid var(--line);border-radius:12px;background:#fbfcfe}.dept-card strong{font-size:15px}.dept-card .big{font-size:25px;font-weight:800;margin:5px 0}
-@media(max-width:1100px){.grid-6{grid-template-columns:repeat(3,1fr)}.grid-4{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:800px){.grid-2,.mapping{grid-template-columns:1fr}.header{align-items:flex-start;flex-direction:column}.filters .field{min-width:145px}}
-@media(max-width:580px){.grid-6,.grid-4{grid-template-columns:1fr}.filters .field{min-width:100%}.bar-row{grid-template-columns:95px 1fr 50px}main{padding:13px}header{position:static}}
+.lock-card{max-width:520px;margin:40px auto;padding:24px}.lock-icon{font-size:40px;margin-bottom:10px}.lock-card h2{margin:0 0 5px}.hidden{display:none!important}
+.list-wrap{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.person-chip{display:inline-flex;align-items:center;gap:7px;background:#eef4fb;color:#2a5b87;padding:6px 9px;border-radius:99px;font-size:11px;font-weight:700}.person-chip button{border:0;background:none;color:#a52222;font-weight:900;cursor:pointer}
+.period-label{font-size:12px;font-weight:800;color:var(--navy)}
+@media(max-width:1100px){.grid-6{grid-template-columns:repeat(3,1fr)}.grid-5{grid-template-columns:repeat(3,1fr)}.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:800px){.grid-3,.grid-2,.mapping{grid-template-columns:1fr}.header{align-items:flex-start;flex-direction:column}.filters .field{min-width:145px}}
+@media(max-width:580px){.grid-6,.grid-5,.grid-4{grid-template-columns:1fr}.filters .field{min-width:100%}.bar-row{grid-template-columns:95px 1fr 50px}main{padding:13px}header{position:static}}
 </style>
 </head>
 <body>
 <header><div class="header">
- <div class="brand"><h1>AIA Marketing Performance Centre</h1><p>Lead Intelligence • Finance • Campaign Performance • Distribution</p></div>
+ <div class="brand"><h1>AIA Marketing Performance Centre</h1><p>Lead Data • Distribution • Campaign Performance • Finance</p></div>
  <nav>
   <button class="active" data-view="dashboard">Dashboard</button>
+  <button data-view="leadData">Lead Data</button>
+  <button data-view="distribution">Distribution</button>
   <button data-view="import">Import Leads</button>
-  <button data-view="finance">Finance</button>
   <button data-view="campaigns">Campaigns</button>
-  <button data-view="data">Data & Backup</button>
+  <button data-view="finance">Finance 🔒</button>
+  <button data-view="data">Settings & Backup</button>
  </nav>
 </div></header>
 
 <main>
+<!-- DASHBOARD -->
 <section id="dashboard" class="view active">
  <div class="panel">
   <div class="topline">
-   <div><strong>Management Dashboard</strong><div class="note">All figures are calculated from uploaded counsellor sheets + your finance entries.</div></div>
+   <div><strong>Management Dashboard</strong><div class="note">Simple lead overview only. Finance figures are kept inside the locked Finance section.</div></div>
    <div class="filters">
     <div class="field"><label>Month</label><select id="dashMonth"></select></div>
-    <div class="field"><label>Department</label><select id="dashDept"><option>All</option><option>Study Abroad</option><option>SLICM</option></select></div>
-    <div class="field"><label>Country / Destination</label><select id="dashCountry"></select></div>
+    <div class="field"><label>Exact Day (optional)</label><input id="dashDay" type="date"></div>
+   </div>
+  </div>
+ </div>
+
+ <div class="grid grid-4" style="margin-top:13px">
+  <div class="kpi"><div class="label">TOTAL LEADS</div><div class="value" id="dTotal">0</div><div class="sub" id="dPeriod">Selected period</div></div>
+  <div class="kpi green"><div class="label">STUDY ABROAD</div><div class="value" id="dSA">0</div><div class="sub">Imported counsellor sheets</div></div>
+  <div class="kpi purple"><div class="label">SLICM</div><div class="value" id="dSL">0</div><div class="sub">Credit Management leads</div></div>
+  <div class="kpi teal"><div class="label">CAMPAIGNS</div><div class="value" id="dCampaigns">0</div><div class="sub">Campaigns with leads</div></div>
+ </div>
+
+ <div class="section-title"><h2>Department Snapshot</h2><span>Study Abroad and SLICM shown separately</span></div>
+ <div class="grid grid-2" id="dashboardDeptCards"></div>
+
+ <div class="grid grid-2" style="margin-top:13px">
+  <div class="panel"><div class="section-title" style="margin-top:0"><h2>Study Abroad — Top Campaigns</h2></div><div id="dashSACampaigns"></div></div>
+  <div class="panel"><div class="section-title" style="margin-top:0"><h2>SLICM — Top Campaigns</h2></div><div id="dashSLCampaigns"></div></div>
+ </div>
+</section>
+
+<!-- LEAD DATA -->
+<section id="leadData" class="view">
+ <div class="panel">
+  <div class="topline">
+   <div><h3 style="margin:0">Lead Data</h3><div class="note">Source and campaign counts from uploaded sheets. This section does not show finance.</div></div>
+   <div class="filters">
+    <div class="field"><label>Month</label><select id="leadMonth"></select></div>
+    <div class="field"><label>Exact Day (optional)</label><input id="leadDay" type="date"></div>
+    <div class="field"><label>Department</label><select id="leadDept"><option>All</option><option>Study Abroad</option><option>SLICM</option></select></div>
+    <div class="field"><label>Country / Destination</label><select id="leadCountry"></select></div>
    </div>
   </div>
  </div>
 
  <div class="grid grid-6" style="margin-top:13px">
-  <div class="kpi"><div class="label">TOTAL LEADS</div><div class="value" id="kTotal">0</div><div class="sub">From imported sheets</div></div>
-  <div class="kpi teal"><div class="label">META</div><div class="value" id="kMeta">0</div><div class="sub">Paid/social lead forms</div></div>
-  <div class="kpi purple"><div class="label">WHATSAPP</div><div class="value" id="kWhatsApp">0</div><div class="sub">Explicit WhatsApp source</div></div>
-  <div class="kpi orange"><div class="label">DIRECT</div><div class="value" id="kDirect">0</div><div class="sub">Direct / hotline / direct calls</div></div>
-  <div class="kpi green"><div class="label">WEBSITE</div><div class="value" id="kWebsite">0</div><div class="sub">Website enquiries</div></div>
-  <div class="kpi"><div class="label">REFERRALS</div><div class="value" id="kReferral">0</div><div class="sub">Referral leads</div></div>
- </div>
-
- <div class="grid grid-4" style="margin-top:13px">
-  <div class="kpi red"><div class="label">TOTAL AD SPEND</div><div class="value" id="kSpend">LKR 0</div><div class="sub">Finance section</div></div>
-  <div class="kpi teal"><div class="label">COST / TOTAL LEAD</div><div class="value" id="kCpl">LKR 0</div><div class="sub">Spend ÷ all imported leads</div></div>
-  <div class="kpi green"><div class="label">META CPL</div><div class="value" id="kMetaCpl">LKR 0</div><div class="sub">Spend ÷ Meta leads*</div></div>
-  <div class="kpi orange"><div class="label">OTHER / DATABASE</div><div class="value" id="kOther">0</div><div class="sub">Database, DL or uncategorised</div></div>
- </div>
- <div class="note" style="margin-top:6px">*Meta CPL is an indicative blended figure when finance entries are not tagged to a specific source.</div>
-
- <div class="section-title"><h2>Department Overview</h2><span>Study Abroad and SLICM remain separate</span></div>
- <div class="grid grid-2" id="deptCards"></div>
-
- <div class="grid grid-2" style="margin-top:13px">
-  <div class="panel"><div class="section-title" style="margin-top:0"><h2>Lead Sources</h2></div><div id="sourceBars"></div></div>
-  <div class="panel"><div class="section-title" style="margin-top:0"><h2>Top Campaigns</h2></div><div id="campaignBars"></div></div>
+  <div class="kpi"><div class="label">TOTAL</div><div class="value" id="lTotal">0</div></div>
+  <div class="kpi teal"><div class="label">META</div><div class="value" id="lMeta">0</div></div>
+  <div class="kpi purple"><div class="label">WHATSAPP</div><div class="value" id="lWhatsApp">0</div></div>
+  <div class="kpi orange"><div class="label">DIRECT</div><div class="value" id="lDirect">0</div></div>
+  <div class="kpi green"><div class="label">WEBSITE</div><div class="value" id="lWebsite">0</div></div>
+  <div class="kpi"><div class="label">REFERRALS</div><div class="value" id="lReferral">0</div></div>
  </div>
 
  <div class="grid grid-2" style="margin-top:13px">
-  <div class="panel">
-   <div class="section-title" style="margin-top:0"><h2>Counsellor Distribution</h2><span>Counted directly from imported rows</span></div>
-   <div class="table-wrap"><table><thead><tr><th>Counsellor</th><th>Department</th><th>Leads</th><th>Share</th></tr></thead><tbody id="dashCounsellors"></tbody></table></div>
-  </div>
-  <div class="panel">
-   <div class="section-title" style="margin-top:0"><h2>Country / Destination</h2></div>
-   <div id="countryBars"></div>
-  </div>
+  <div class="panel"><div class="section-title" style="margin-top:0"><h2>Lead Sources</h2></div><div id="leadSourceBars"></div></div>
+  <div class="panel"><div class="section-title" style="margin-top:0"><h2>Country / Destination</h2></div><div id="leadCountryBars"></div></div>
+ </div>
+
+ <div class="panel" style="margin-top:13px">
+  <div class="section-title" style="margin-top:0"><h2>Campaign Lead Count</h2><span id="leadPeriodLabel"></span></div>
+  <div class="table-wrap"><table><thead><tr><th>Campaign</th><th>Department</th><th>Total</th><th>Meta</th><th>WhatsApp</th><th>Direct</th><th>Website</th><th>Referral</th><th>Other / DB</th></tr></thead><tbody id="leadCampaignRows"></tbody></table></div>
  </div>
 </section>
 
+<!-- DISTRIBUTION -->
+<section id="distribution" class="view">
+ <div class="panel">
+  <div class="topline">
+   <div><h3 style="margin:0">Lead Distribution</h3><div class="note">Shows how many imported leads are assigned to each counsellor. Study Abroad and SLICM are kept as separate teams.</div></div>
+   <div class="filters">
+    <div class="field"><label>Month</label><select id="distMonth"></select></div>
+    <div class="field"><label>Exact Day (optional)</label><input id="distDay" type="date"></div>
+   </div>
+  </div>
+ </div>
+
+ <div class="grid grid-2" style="margin-top:13px">
+  <div class="panel">
+   <div class="topline"><div><span class="badge sa">Study Abroad</span><h3 style="margin:8px 0 0">Counsellor Distribution</h3></div><div class="kpi" style="min-width:145px;box-shadow:none"><div class="label">TOTAL ASSIGNED</div><div class="value" id="distSATotal">0</div></div></div>
+   <div class="table-wrap" style="margin-top:12px"><table><thead><tr><th>Counsellor</th><th>Leads</th><th>Share</th><th>Top Source</th></tr></thead><tbody id="distSARows"></tbody></table></div>
+  </div>
+  <div class="panel">
+   <div class="topline"><div><span class="badge sl">SLICM</span><h3 style="margin:8px 0 0">Counsellor Distribution</h3></div><div class="kpi purple" style="min-width:145px;box-shadow:none"><div class="label">TOTAL ASSIGNED</div><div class="value" id="distSLTotal">0</div></div></div>
+   <div class="table-wrap" style="margin-top:12px"><table><thead><tr><th>Counsellor</th><th>Leads</th><th>Share</th><th>Top Source</th></tr></thead><tbody id="distSLRows"></tbody></table></div>
+  </div>
+ </div>
+
+ <div class="panel" style="margin-top:13px">
+  <div class="section-title" style="margin-top:0"><h2>Daily Distribution Trend</h2><span>Useful for checking day-by-day workload</span></div>
+  <div class="table-wrap"><table><thead><tr><th>Date</th><th>Study Abroad</th><th>SLICM</th><th>Total Distributed</th></tr></thead><tbody id="dailyDistributionRows"></tbody></table></div>
+ </div>
+</section>
+
+<!-- IMPORT -->
 <section id="import" class="view">
  <div class="grid grid-2">
   <div class="panel">
    <h3 style="margin-top:0">Bulk Import Lead Sheets</h3>
-   <div class="notice">The system processes the files in your browser and stores only <b>aggregated reporting data + anonymous duplicate fingerprints</b>. Student names, emails and phone numbers are not saved in the dashboard database. <b>Duplicate rule:</b> the same phone number appearing more than once in the same department and month is counted once.</div>
+   <div class="notice">Files are processed in your browser. The system stores only <b>date-level aggregated reporting data + anonymous duplicate fingerprints</b>. Names, emails and phone numbers are not kept in the dashboard. <b>Duplicate rule:</b> the same phone number in the same department and month is counted once.</div>
    <hr>
-   <div class="field"><label>Department / File Type</label>
-    <select id="importDept"><option>Study Abroad</option><option>SLICM</option></select>
-   </div>
+   <div class="field"><label>Department / File Type</label><select id="importDept"><option>Study Abroad</option><option>SLICM</option></select></div>
+
    <div id="saExtra">
     <div class="mapping">
-     <div class="field"><label>Counsellor</label><input id="importCounsellor" placeholder="e.g. Abilashini"></div>
-     <div class="field"><label>Country / Destination</label><input id="importCountry" placeholder="e.g. UK"></div>
-     <div class="field"><label>Sheet label (optional)</label><input id="importLabel" placeholder="e.g. Abilashini - UK"></div>
+     <div class="field"><label>Study Abroad Counsellor</label><select id="importCounsellor"></select></div>
+     <div class="field"><label>Country / Destination</label><input id="importCountry" placeholder="e.g. UK / UAE / Australia"></div>
+     <div class="field"><label>Sheet Label (optional)</label><input id="importLabel" placeholder="e.g. UK - Abilashini"></div>
     </div>
-    <div class="note">Study Abroad sample format detected: <b>Date</b>, <b>Channel</b>, <b>Campaign M/G</b>. If the file itself does not contain counsellor/country columns, use the two fields above.</div>
+    <div class="note">Study Abroad format: <b>Date</b>, <b>Channel</b>, <b>Campaign M/G</b>. If Counsellor and Country are not inside the file, the selections above are used.</div>
    </div>
+
    <div id="slicmExtra" style="display:none">
     <div class="field"><label>Excel Sheet</label><select id="slicmSheet"></select></div>
-    <div class="note">SLICM format detected: <b>Date</b>, <b>BASE</b>, <b>CAMP DETAILS</b>, <b>Counsellors</b>.</div>
+    <div class="note">SLICM format: <b>Date</b>, <b>BASE</b>, <b>CAMP DETAILS</b>, <b>Counsellors</b>. SLICM counsellor names are automatically learned from imported rows.</div>
    </div>
+
    <hr>
-   <div class="field"><label>Select one or more CSV/XLSX files</label><input id="leadFiles" type="file" accept=".csv,.xlsx,.xls" multiple></div>
+   <div class="field"><label>Select CSV / XLSX files</label><input id="leadFiles" type="file" accept=".csv,.xlsx,.xls" multiple></div>
    <div class="actions"><button class="btn primary" id="previewBtn">Preview Import</button><button class="btn secondary" id="clearPreview">Clear</button></div>
   </div>
 
@@ -146,84 +195,145 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
  </div>
 
  <div class="panel" style="margin-top:13px">
-  <h3 style="margin-top:0">How sources are treated</h3>
+  <h3 style="margin-top:0">Source Rules</h3>
   <div class="grid grid-2">
-   <div class="dept-card"><strong>Study Abroad</strong><div class="note" style="margin-top:5px"><b>META</b> → Meta<br><b>DIRECT_LEADS</b> → Direct (this can include hotline/WhatsApp when your Study Abroad sheet combines them)<br><b>WEBSITE_LEADS</b> → Website<br><b>REFERRAL</b> → Referral<br><b>DATA_BASE</b> → Database<br><b>DL_LEADS</b> → DL / Other</div></div>
-   <div class="dept-card"><strong>SLICM</strong><div class="note" style="margin-top:5px"><b>Meta Leads</b> → Meta<br><b>Whatsapp</b> → WhatsApp<br><b>Direct Call</b> → Direct<br><b>Website</b> → Website<br>Any other value remains visible under Other.</div></div>
+   <div class="dept-card"><strong>Study Abroad</strong><div class="note" style="margin-top:5px"><b>META</b> → Meta<br><b>DIRECT_LEADS</b> → Direct (your combined hotline / direct stream)<br><b>WEBSITE_LEADS</b> → Website<br><b>REFERRAL</b> → Referral<br><b>DATA_BASE</b> → Database<br><b>DL_LEADS</b> → DL Leads / Other</div></div>
+   <div class="dept-card"><strong>SLICM</strong><div class="note" style="margin-top:5px"><b>Meta Leads</b> → Meta<br><b>Whatsapp</b> → WhatsApp<br><b>Direct Call</b> → Direct<br><b>Website</b> → Website<br>Other values remain visible under Other.</div></div>
   </div>
  </div>
 </section>
 
-<section id="finance" class="view">
- <div class="grid grid-2">
-  <div class="panel">
-   <h3 style="margin-top:0">Add Advertising Spend</h3>
-   <div id="financeMsg" class="success">Spend saved.</div>
-   <form id="financeForm">
-    <div class="mapping">
-     <div class="field"><label>Entry Type</label><select id="finType"><option>Daily</option><option>Monthly Total</option></select></div>
-     <div class="field" id="finDateWrap"><label>Date</label><input id="finDate" type="date"></div>
-     <div class="field" id="finMonthWrap" style="display:none"><label>Month</label><input id="finMonth" type="month"></div>
-    </div>
-    <div class="mapping">
-     <div class="field"><label>Department</label><select id="finDept"><option>Study Abroad</option><option>SLICM</option></select></div>
-     <div class="field"><label>Campaign</label><select id="finCampaign"></select></div>
-     <div class="field"><label>Platform</label><select id="finPlatform"><option>Meta</option><option>Google</option><option>TikTok</option><option>Other</option></select></div>
-    </div>
-    <div class="field"><label>Spend (LKR)</label><input id="finSpend" type="number" min="0" step="0.01" placeholder="e.g. 45000" required></div>
-    <div class="field"><label>Notes (optional)</label><textarea id="finNotes" placeholder="e.g. Meta invoice / campaign period"></textarea></div>
-    <button class="btn primary">Save Spend</button>
-   </form>
-   <p class="note">You can enter spend day-by-day or enter one monthly total. Use a campaign from the imported lead data whenever possible so campaign CPL can be calculated automatically.</p>
-  </div>
-
-  <div class="panel">
-   <div class="topline"><div><h3 style="margin:0">Finance Summary</h3><div class="note">Separate from lead imports.</div></div>
-    <div class="filters"><div class="field"><label>Month</label><select id="finFilterMonth"></select></div><div class="field"><label>Department</label><select id="finFilterDept"><option>All</option><option>Study Abroad</option><option>SLICM</option></select></div></div>
-   </div>
-   <div class="grid grid-2" style="margin-top:13px">
-    <div class="kpi red"><div class="label">SPEND</div><div class="value" id="fSpend">LKR 0</div></div>
-    <div class="kpi teal"><div class="label">LEADS</div><div class="value" id="fLeads">0</div></div>
-    <div class="kpi green"><div class="label">BLENDED CPL</div><div class="value" id="fCpl">LKR 0</div></div>
-    <div class="kpi"><div class="label">CAMPAIGNS WITH SPEND</div><div class="value" id="fCampaigns">0</div></div>
-   </div>
-  </div>
- </div>
-
- <div class="panel" style="margin-top:13px">
-  <div class="section-title" style="margin-top:0"><h2>Spend Records</h2></div>
-  <div class="table-wrap"><table><thead><tr><th>Period</th><th>Department</th><th>Campaign</th><th>Platform</th><th>Spend</th><th>Notes</th><th></th></tr></thead><tbody id="financeRows"></tbody></table></div>
- </div>
-</section>
-
+<!-- CAMPAIGNS (LEAD ONLY) -->
 <section id="campaigns" class="view">
  <div class="panel">
   <div class="topline">
-   <div><h3 style="margin:0">Campaign Performance</h3><div class="note">Lead counts come from counsellor sheets. Spending comes from Finance.</div></div>
-   <div class="filters"><div class="field"><label>Month</label><select id="campMonth"></select></div><div class="field"><label>Department</label><select id="campDept"><option>All</option><option>Study Abroad</option><option>SLICM</option></select></div></div>
+   <div><h3 style="margin:0">Campaign Lead Performance</h3><div class="note">Lead counts only. Spend and CPL are shown only in the locked Finance section.</div></div>
+   <div class="filters">
+    <div class="field"><label>Month</label><select id="campMonth"></select></div>
+    <div class="field"><label>Exact Day (optional)</label><input id="campDay" type="date"></div>
+    <div class="field"><label>Department</label><select id="campDept"><option>All</option><option>Study Abroad</option><option>SLICM</option></select></div>
+   </div>
   </div>
-  <div class="table-wrap" style="margin-top:13px"><table><thead><tr><th>Campaign</th><th>Department</th><th>Leads</th><th>Meta</th><th>WhatsApp</th><th>Direct</th><th>Website</th><th>Spend</th><th>CPL</th></tr></thead><tbody id="campaignRows"></tbody></table></div>
+  <div class="table-wrap" style="margin-top:13px"><table><thead><tr><th>Campaign</th><th>Department</th><th>Total Leads</th><th>Meta</th><th>WhatsApp</th><th>Direct</th><th>Website</th><th>Referral</th><th>Other / DB</th></tr></thead><tbody id="campaignRows"></tbody></table></div>
  </div>
 </section>
 
+<!-- FINANCE -->
+<section id="finance" class="view">
+ <div id="financeGate" class="panel lock-card">
+  <div class="lock-icon">🔒</div>
+  <div id="financeSetupBox">
+   <h2>Set Finance Password</h2>
+   <p class="note">Create a password for the Finance section on this browser.</p>
+   <div class="field"><label>New Password</label><input id="finSetupPass" type="password" autocomplete="new-password"></div>
+   <div class="field"><label>Confirm Password</label><input id="finSetupConfirm" type="password" autocomplete="new-password"></div>
+   <button class="btn primary" id="setupFinancePass">Set Password & Open Finance</button>
+  </div>
+  <div id="financeLoginBox" class="hidden">
+   <h2>Finance Sign In</h2>
+   <p class="note">Enter the Finance password to view spending, CPL and finance records.</p>
+   <div class="field"><label>Password</label><input id="finLoginPass" type="password" autocomplete="current-password"></div>
+   <button class="btn primary" id="financeLoginBtn">Sign In</button>
+  </div>
+  <div class="warnbox" style="margin-top:16px"><b>Security note:</b> this is a browser-level lock for the static GitHub Pages version. It prevents casual access on the shared browser, but true server-side security would require a login/backend service.</div>
+ </div>
+
+ <div id="financeContent" class="hidden">
+  <div class="panel">
+   <div class="topline">
+    <div><h3 style="margin:0">Finance Dashboard</h3><div class="note">All spending, CPL and finance information stays inside this locked section.</div></div>
+    <div class="filters">
+     <div class="field"><label>Month</label><select id="finFilterMonth"></select></div>
+     <div class="field"><label>Exact Day (optional)</label><input id="finFilterDay" type="date"></div>
+     <div class="field"><label>Department</label><select id="finFilterDept"><option>All</option><option>Study Abroad</option><option>SLICM</option></select></div>
+     <button class="btn secondary" id="financeLockBtn">Lock Finance</button>
+    </div>
+   </div>
+  </div>
+
+  <div class="grid grid-4" style="margin-top:13px">
+   <div class="kpi red"><div class="label">AD SPEND</div><div class="value" id="fSpend">LKR 0</div></div>
+   <div class="kpi teal"><div class="label">LEADS</div><div class="value" id="fLeads">0</div></div>
+   <div class="kpi green"><div class="label">BLENDED CPL</div><div class="value" id="fCpl">LKR 0</div></div>
+   <div class="kpi"><div class="label">CAMPAIGNS WITH SPEND</div><div class="value" id="fCampaigns">0</div></div>
+  </div>
+
+  <div class="grid grid-2" style="margin-top:13px">
+   <div class="panel">
+    <h3 style="margin-top:0">Add Advertising Spend</h3>
+    <div id="financeMsg" class="success">Spend saved.</div>
+    <form id="financeForm">
+     <div class="mapping">
+      <div class="field"><label>Entry Type</label><select id="finType"><option>Daily</option><option>Monthly Total</option></select></div>
+      <div class="field" id="finDateWrap"><label>Date</label><input id="finDate" type="date"></div>
+      <div class="field" id="finMonthWrap" style="display:none"><label>Month</label><input id="finMonth" type="month"></div>
+     </div>
+     <div class="mapping">
+      <div class="field"><label>Department</label><select id="finDept"><option>Study Abroad</option><option>SLICM</option></select></div>
+      <div class="field"><label>Campaign</label><select id="finCampaign"></select></div>
+      <div class="field"><label>Platform</label><select id="finPlatform"><option>Meta</option><option>Google</option><option>TikTok</option><option>Other</option></select></div>
+     </div>
+     <div class="field"><label>Spend (LKR)</label><input id="finSpend" type="number" min="0" step="0.01" placeholder="e.g. 45000" required></div>
+     <div class="field"><label>Notes (optional)</label><textarea id="finNotes" placeholder="e.g. Meta invoice / campaign period"></textarea></div>
+     <button class="btn primary">Save Spend</button>
+    </form>
+   </div>
+
+   <div class="panel">
+    <h3 style="margin-top:0">Finance Access</h3>
+    <p class="note">Finance automatically locks again when you open a new browser session. You can also lock it immediately.</p>
+    <div class="actions">
+     <button class="btn secondary" id="changeFinancePass">Change Finance Password</button>
+     <button class="btn danger" id="financeLockBtn2">Lock Now</button>
+    </div>
+   </div>
+  </div>
+
+  <div class="panel" style="margin-top:13px">
+   <div class="section-title" style="margin-top:0"><h2>Campaign Finance Performance</h2><span>Spend + lead count + CPL</span></div>
+   <div class="table-wrap"><table><thead><tr><th>Campaign</th><th>Department</th><th>Leads</th><th>Spend</th><th>CPL</th></tr></thead><tbody id="financeCampaignRows"></tbody></table></div>
+  </div>
+
+  <div class="panel" style="margin-top:13px">
+   <div class="section-title" style="margin-top:0"><h2>Spend Records</h2></div>
+   <div class="table-wrap"><table><thead><tr><th>Period</th><th>Department</th><th>Campaign</th><th>Platform</th><th>Spend</th><th>Notes</th><th></th></tr></thead><tbody id="financeRows"></tbody></table></div>
+  </div>
+ </div>
+</section>
+
+<!-- SETTINGS -->
 <section id="data" class="view">
  <div class="grid grid-2">
   <div class="panel">
+   <h3 style="margin-top:0">Study Abroad Counsellors</h3>
+   <form id="saCounsellorForm" class="actions"><input id="newSACounsellor" placeholder="Add Study Abroad counsellor" style="max-width:330px" required><button class="btn primary">Add</button></form>
+   <div class="list-wrap" id="saCounsellorList"></div>
+  </div>
+  <div class="panel">
+   <h3 style="margin-top:0">SLICM Counsellors</h3>
+   <form id="slCounsellorForm" class="actions"><input id="newSLCounsellor" placeholder="Add SLICM counsellor" style="max-width:330px" required><button class="btn primary">Add</button></form>
+   <div class="list-wrap" id="slCounsellorList"></div>
+   <p class="note">Names are also added automatically when they are detected in a SLICM import.</p>
+  </div>
+ </div>
+
+ <div class="grid grid-2" style="margin-top:13px">
+  <div class="panel">
    <h3 style="margin-top:0">Imported Reporting Data</h3>
    <div class="grid grid-2">
-    <div class="dept-card"><strong>Study Abroad</strong><div class="big" id="dataSA">0</div><div class="note">Lead rows counted</div></div>
-    <div class="dept-card"><strong>SLICM</strong><div class="big" id="dataSL">0</div><div class="note">Lead rows counted</div></div>
+    <div class="dept-card"><strong>Study Abroad</strong><div class="big" id="dataSA">0</div><div class="note">Unique imported leads</div></div>
+    <div class="dept-card"><strong>SLICM</strong><div class="big" id="dataSL">0</div><div class="note">Unique imported leads</div></div>
    </div>
    <div id="importHistory" style="margin-top:12px"></div>
   </div>
   <div class="panel">
    <h3 style="margin-top:0">Backup & Restore</h3>
-   <p class="note">Your GitHub website contains the application code only. Reporting data remains in this browser unless you export/import a backup.</p>
+   <p class="note">Reporting information is stored in this browser. Export a backup regularly.</p>
    <div class="actions">
     <button class="btn primary" id="exportBackup">Export Backup</button>
     <label class="btn secondary">Import Backup<input id="importBackup" type="file" accept=".json" hidden></label>
     <button class="btn secondary" id="exportReport">Export Summary CSV</button>
-    <button class="btn danger" id="resetAll">Reset All Data</button>
+    <button class="btn danger" id="resetAll">Reset Reporting Data</button>
    </div>
   </div>
  </div>
@@ -232,22 +342,37 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
 
 <script>
 const $=id=>document.getElementById(id);
-const KEY="aia_marketing_performance_v4";
-const defaultDb={leadAgg:[],fingerprints:[],finance:[],imports:[]};
-let db=loadDb(), previewRows=[];
-function loadDb(){try{const x=JSON.parse(localStorage.getItem(KEY));return x&&x.leadAgg?x:structuredClone(defaultDb)}catch(e){return structuredClone(defaultDb)}}
+const KEY="aia_marketing_performance_v5";
+const FIN_AUTH_KEY="aia_finance_auth_v1";
+const FIN_SESSION_KEY="aia_finance_unlocked";
+const DEFAULT_SA=["Abilashini","Ranuj","Nisal","Navodhya","Dinethri","Rinoza","Bhavindhya","Ramesh","Kaushani","Janarthanan","Chamari","Amanda","Jana","Michelle","Birannavi","Nawaab"];
+const defaultDb={leadAgg:[],fingerprints:[],finance:[],imports:[],counsellors:{studyAbroad:[...DEFAULT_SA],slicm:[]}};
+let db=loadDb(),previewRows=[];
+
+function loadDb(){
+ try{
+  const x=JSON.parse(localStorage.getItem(KEY));
+  if(x&&x.leadAgg){
+   x.counsellors=x.counsellors||{studyAbroad:[...DEFAULT_SA],slicm:[]};
+   x.counsellors.studyAbroad=x.counsellors.studyAbroad||[...DEFAULT_SA];
+   x.counsellors.slicm=x.counsellors.slicm||[];
+   return x
+  }
+ }catch(e){}
+ return structuredClone(defaultDb)
+}
 function saveDb(){localStorage.setItem(KEY,JSON.stringify(db));renderAll()}
 function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
 function n(v){return Number(v)||0}
 function money(v){return "LKR "+n(v).toLocaleString(undefined,{maximumFractionDigits:0})}
 function uid(p){return p+"-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,7)}
-function monthKey(d){if(!d)return"";let x;if(/^\d{4}-\d{2}/.test(d))x=new Date(d.slice(0,10)+"T00:00:00");else{x=new Date(d)};return isNaN(x)?"":x.toLocaleString("en",{month:"short",year:"numeric"})}
+function monthKey(d){if(!d)return"";let x;if(/^\d{4}-\d{2}/.test(d))x=new Date(d.slice(0,10)+"T00:00:00");else x=new Date(d);return isNaN(x)?"":x.toLocaleString("en",{month:"short",year:"numeric"})}
 function parseDate(v){
  if(v==null||v==="")return"";
- if(typeof v==="number" && window.XLSX){const z=XLSX.SSF.parse_date_code(v);if(z)return `${z.y}-${String(z.m).padStart(2,"0")}-${String(z.d).padStart(2,"0")}`}
+ if(typeof v==="number"&&window.XLSX){const z=XLSX.SSF.parse_date_code(v);if(z)return `${z.y}-${String(z.m).padStart(2,"0")}-${String(z.d).padStart(2,"0")}`}
  if(v instanceof Date&&!isNaN(v))return v.toISOString().slice(0,10);
- let s=String(v).trim();
- let m=s.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/); if(m)return `${m[3]}-${m[1].padStart(2,"0")}-${m[2].padStart(2,"0")}`;
+ let s=String(v).trim(),m=s.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/);
+ if(m)return `${m[3]}-${m[1].padStart(2,"0")}-${m[2].padStart(2,"0")}`;
  let d=new Date(s);return isNaN(d)?"":d.toISOString().slice(0,10)
 }
 function hashStr(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(36)}
@@ -255,13 +380,15 @@ function norm(s){return String(s??"").trim().toLowerCase().replace(/\s+/g," ")}
 function fieldKey(s){return String(s??"").toLowerCase().replace(/[^a-z0-9]+/g,"")}
 function getField(row,names){
  const wanted=names.map(fieldKey);
- for(const [k,v] of Object.entries(row)){
-  if(wanted.includes(fieldKey(k))) return v;
- }
- return "";
+ for(const [k,v] of Object.entries(row)){if(wanted.includes(fieldKey(k)))return v}
+ return ""
 }
 function unique(a){return [...new Set(a.filter(Boolean))].sort()}
-function setSelect(sel,items,all=true,keep=null){let old=keep??sel.value;sel.innerHTML=(all?'<option>All</option>':'')+items.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join("");if([...sel.options].some(o=>o.value===old))sel.value=old}
+function setSelect(sel,items,all=true,keep=null){
+ let old=keep??sel.value;
+ sel.innerHTML=(all?'<option>All</option>':'')+items.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join("");
+ if([...sel.options].some(o=>o.value===old))sel.value=old
+}
 function sourceCategory(dept,raw){
  const s=norm(raw).replace(/[\s\-]+/g,"_");
  if(dept==="Study Abroad"){
@@ -272,7 +399,7 @@ function sourceCategory(dept,raw){
   if(s.includes("refer"))return"Referral";
   if(s.includes("data_base")||s.includes("database"))return"Database";
   if(s.includes("dl_lead"))return"DL Leads";
-  return raw&&String(raw).trim()?String(raw).trim():"Other";
+  return raw&&String(raw).trim()?String(raw).trim():"Other"
  }
  if(s.includes("meta"))return"Meta";
  if(s.includes("whatsapp")||s.includes("whats_app"))return"WhatsApp";
@@ -280,107 +407,176 @@ function sourceCategory(dept,raw){
  if(s.includes("website"))return"Website";
  if(s.includes("refer"))return"Referral";
  if(s.includes("database"))return"Database";
- return raw&&String(raw).trim()?String(raw).trim():"Other";
+ return raw&&String(raw).trim()?String(raw).trim():"Other"
 }
 function addAgg(row){
- const key=[row.department,row.month,row.country||"",row.counsellor||"",row.campaign||"",row.source||""].join("¦");
+ const key=[row.department,row.date,row.month,row.country||"",row.counsellor||"",row.campaign||"",row.source||""].join("¦");
  let x=db.leadAgg.find(a=>a.key===key);
- if(!x){x={key,department:row.department,month:row.month,country:row.country||"",counsellor:row.counsellor||"",campaign:row.campaign||"Unspecified Campaign",source:row.source||"Other",count:0};db.leadAgg.push(x)}
+ if(!x){
+  x={key,department:row.department,date:row.date,month:row.month,country:row.country||"",counsellor:row.counsellor||"",campaign:row.campaign||"Unspecified Campaign",source:row.source||"Other",count:0};
+  db.leadAgg.push(x)
+ }
  x.count+=1
 }
-function navInit(){document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));$(b.dataset.view).classList.add("active")})}
-navInit();
-
+function periodText(month,day){return day?new Date(day+"T00:00:00").toLocaleDateString("en",{day:"numeric",month:"short",year:"numeric"}):(month==="All"?"All Dates":month)}
 function allMonths(){
  const a=db.leadAgg.map(x=>x.month).concat(db.finance.map(x=>x.month));
  const current=new Date().toLocaleString("en",{month:"short",year:"numeric"});if(!a.includes(current))a.push(current);
  return unique(a).sort((a,b)=>new Date("1 "+b)-new Date("1 "+a))
 }
-function filteredLead(month,dept,country="All"){return db.leadAgg.filter(x=>(month==="All"||x.month===month)&&(dept==="All"||x.department===dept)&&(country==="All"||x.country===country))}
+function filteredLead(month,day="",dept="All",country="All"){
+ return db.leadAgg.filter(x=>
+  (!day?(month==="All"||x.month===month):x.date===day)&&
+  (dept==="All"||x.department===dept)&&
+  (country==="All"||x.country===country)
+ )
+}
+function filteredFinance(month,day="",dept="All"){
+ return db.finance.filter(x=>
+  (!day?(month==="All"||x.month===month):(x.type==="Daily"&&x.period===day))&&
+  (dept==="All"||x.department===dept)
+ )
+}
 function expandTotals(agg){
  const total=agg.reduce((a,x)=>a+x.count,0),bySource={};
  agg.forEach(x=>bySource[x.source]=(bySource[x.source]||0)+x.count);
  return{total,bySource}
 }
-function filteredFinance(month,dept){return db.finance.filter(x=>(month==="All"||x.month===month)&&(dept==="All"||x.department===dept))}
+function sourceOther(src){
+ const known=["Meta","WhatsApp","Direct","Website","Referral"];
+ return Object.entries(src).filter(([k])=>!known.includes(k)).reduce((a,[,v])=>a+v,0)
+}
+function campaignMap(agg){
+ const map={};
+ agg.forEach(x=>{
+  const k=x.department+"¦"+x.campaign;
+  map[k]??={department:x.department,campaign:x.campaign,total:0,src:{}};
+  map[k].total+=x.count;
+  map[k].src[x.source]=(map[k].src[x.source]||0)+x.count
+ });
+ return map
+}
+function barList(entries,maxItems=10){
+ const arr=entries.sort((a,b)=>b[1]-a[1]).slice(0,maxItems),max=Math.max(1,...arr.map(x=>x[1]));
+ return arr.map(([k,v])=>`<div class="bar-row"><div title="${esc(k)}">${esc(k.length>28?k.slice(0,28)+"…":k)}</div><div class="bar-track"><div class="bar" style="width:${v/max*100}%"></div></div><strong>${v}</strong></div>`).join("")||'<div class="empty">No data yet.</div>'
+}
+function syncMonthFromDay(dayId,monthId){
+ const d=$(dayId).value;if(!d)return;
+ const m=monthKey(d);if([...$(monthId).options].some(o=>o.value===m))$(monthId).value=m
+}
+
+/* NAV */
+function showView(id,button){
+ document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));
+ if(button)button.classList.add("active");
+ document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+ $(id).classList.add("active");
+ if(id==="finance")renderFinanceGate()
+}
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>showView(b.dataset.view,b));
+
+/* FILTERS */
 function renderFilters(){
- const months=allMonths(), current=new Date().toLocaleString("en",{month:"short",year:"numeric"});
- ["dashMonth","finFilterMonth","campMonth"].forEach(id=>setSelect($(id),months,true,$(id).value||current));
+ const months=allMonths(),current=new Date().toLocaleString("en",{month:"short",year:"numeric"});
+ ["dashMonth","leadMonth","distMonth","campMonth","finFilterMonth"].forEach(id=>setSelect($(id),months,true,$(id).value||current));
  const countries=unique(db.leadAgg.filter(x=>x.department==="Study Abroad").map(x=>x.country));
- setSelect($("dashCountry"),countries,true,$("dashCountry").value||"All");
+ setSelect($("leadCountry"),countries,true,$("leadCountry").value||"All");
+ setSelect($("importCounsellor"),db.counsellors.studyAbroad,false,$("importCounsellor").value);
  const camps=unique(db.leadAgg.filter(x=>x.department===$("finDept").value).map(x=>x.campaign));
- setSelect($("finCampaign"),["Unallocated / General Spend",...camps],false,$("finCampaign").value);
+ setSelect($("finCampaign"),["Unallocated / General Spend",...camps],false,$("finCampaign").value)
 }
+
+/* DASHBOARD */
 function renderDashboard(){
- const month=$("dashMonth").value,dept=$("dashDept").value,country=$("dashCountry").value;
- const agg=filteredLead(month,dept,country), t=expandTotals(agg), fin=filteredFinance(month,dept).filter(f=>country==="All"||f.country===country||!f.country);
- const spend=fin.reduce((a,x)=>a+n(x.spend),0),src=t.bySource;
- $("kTotal").textContent=t.total.toLocaleString();$("kMeta").textContent=n(src.Meta).toLocaleString();$("kWhatsApp").textContent=n(src.WhatsApp).toLocaleString();
- $("kDirect").textContent=n(src.Direct).toLocaleString();$("kWebsite").textContent=n(src.Website).toLocaleString();$("kReferral").textContent=n(src.Referral).toLocaleString();
- $("kSpend").textContent=money(spend);$("kCpl").textContent=money(t.total?spend/t.total:0);$("kMetaCpl").textContent=money(src.Meta?spend/src.Meta:0);
- const known=["Meta","WhatsApp","Direct","Website","Referral"];let other=Object.entries(src).filter(([k])=>!known.includes(k)).reduce((a,[,v])=>a+v,0);$("kOther").textContent=other.toLocaleString();
-
- $("deptCards").innerHTML=["Study Abroad","SLICM"].map(d=>{
-  const a=filteredLead(month,d,country),tt=expandTotals(a),sp=filteredFinance(month,d).reduce((q,x)=>q+n(x.spend),0);
-  return `<div class="dept-card"><span class="badge ${d==="Study Abroad"?"sa":"sl"}">${d}</span><div class="big">${tt.total.toLocaleString()} leads</div><div class="note">${money(sp)} spend • CPL ${money(tt.total?sp/tt.total:0)} • Meta ${n(tt.bySource.Meta)} • Direct ${n(tt.bySource.Direct)} • WhatsApp ${n(tt.bySource.WhatsApp)}</div></div>`
+ const m=$("dashMonth").value,d=$("dashDay").value,all=filteredLead(m,d),sa=all.filter(x=>x.department==="Study Abroad"),sl=all.filter(x=>x.department==="SLICM");
+ $("dTotal").textContent=all.reduce((a,x)=>a+x.count,0).toLocaleString();
+ $("dSA").textContent=sa.reduce((a,x)=>a+x.count,0).toLocaleString();
+ $("dSL").textContent=sl.reduce((a,x)=>a+x.count,0).toLocaleString();
+ $("dCampaigns").textContent=unique(all.map(x=>x.department+"¦"+x.campaign)).length;
+ $("dPeriod").textContent=periodText(m,d);
+ $("dashboardDeptCards").innerHTML=["Study Abroad","SLICM"].map(dep=>{
+  const a=all.filter(x=>x.department===dep),t=expandTotals(a);
+  return `<div class="dept-card"><span class="badge ${dep==="Study Abroad"?"sa":"sl"}">${dep}</span><div class="big">${t.total.toLocaleString()} leads</div><div class="note">Meta ${n(t.bySource.Meta)} • WhatsApp ${n(t.bySource.WhatsApp)} • Direct ${n(t.bySource.Direct)} • Website ${n(t.bySource.Website)} • Other/DB ${sourceOther(t.bySource)}</div></div>`
  }).join("");
-
- const sourceEntries=Object.entries(src).sort((a,b)=>b[1]-a[1]),maxS=Math.max(1,...sourceEntries.map(x=>x[1]));
- $("sourceBars").innerHTML=sourceEntries.map(([k,v])=>`<div class="bar-row"><div>${esc(k)}</div><div class="bar-track"><div class="bar" style="width:${v/maxS*100}%"></div></div><strong>${v}</strong></div>`).join("")||'<div class="empty">No data yet.</div>';
- const cm={};agg.forEach(x=>cm[x.campaign]=(cm[x.campaign]||0)+x.count);const ce=Object.entries(cm).sort((a,b)=>b[1]-a[1]).slice(0,10),maxC=Math.max(1,...ce.map(x=>x[1]));
- $("campaignBars").innerHTML=ce.map(([k,v])=>`<div class="bar-row"><div title="${esc(k)}">${esc(k.length>28?k.slice(0,28)+"…":k)}</div><div class="bar-track"><div class="bar" style="width:${v/maxC*100}%"></div></div><strong>${v}</strong></div>`).join("")||'<div class="empty">No data yet.</div>';
-
- const co={};agg.forEach(x=>{let k=x.counsellor||"Unassigned";co[k]??={count:0,depts:new Set};co[k].count+=x.count;co[k].depts.add(x.department)});
- $("dashCounsellors").innerHTML=Object.entries(co).sort((a,b)=>b[1].count-a[1].count).map(([k,v])=>`<tr><td>${esc(k)}</td><td>${esc([...v.depts].join(", "))}</td><td><b>${v.count}</b></td><td>${t.total?(v.count/t.total*100).toFixed(1):0}%</td></tr>`).join("")||'<tr><td colspan="4" class="empty">No data yet.</td></tr>';
- const countries={};agg.forEach(x=>{if(x.country)countries[x.country]=(countries[x.country]||0)+x.count});const cte=Object.entries(countries).sort((a,b)=>b[1]-a[1]),maxCt=Math.max(1,...cte.map(x=>x[1]));
- $("countryBars").innerHTML=cte.map(([k,v])=>`<div class="bar-row"><div>${esc(k)}</div><div class="bar-track"><div class="bar" style="width:${v/maxCt*100}%"></div></div><strong>${v}</strong></div>`).join("")||'<div class="empty">SLICM does not require country reporting, or no destination is assigned yet.</div>';
+ const saC={},slC={};sa.forEach(x=>saC[x.campaign]=(saC[x.campaign]||0)+x.count);sl.forEach(x=>slC[x.campaign]=(slC[x.campaign]||0)+x.count);
+ $("dashSACampaigns").innerHTML=barList(Object.entries(saC));
+ $("dashSLCampaigns").innerHTML=barList(Object.entries(slC))
 }
+
+/* LEAD DATA */
+function renderLeadData(){
+ const m=$("leadMonth").value,d=$("leadDay").value,dep=$("leadDept").value,country=$("leadCountry").value;
+ const agg=filteredLead(m,d,dep,country),t=expandTotals(agg),src=t.bySource;
+ $("lTotal").textContent=t.total.toLocaleString();$("lMeta").textContent=n(src.Meta);$("lWhatsApp").textContent=n(src.WhatsApp);$("lDirect").textContent=n(src.Direct);$("lWebsite").textContent=n(src.Website);$("lReferral").textContent=n(src.Referral);
+ $("leadPeriodLabel").textContent=periodText(m,d);
+ $("leadSourceBars").innerHTML=barList(Object.entries(src),20);
+ const countries={};agg.forEach(x=>{if(x.country)countries[x.country]=(countries[x.country]||0)+x.count});
+ $("leadCountryBars").innerHTML=barList(Object.entries(countries),20);
+ const map=campaignMap(agg);
+ $("leadCampaignRows").innerHTML=Object.values(map).sort((a,b)=>b.total-a.total).map(x=>{
+  const other=sourceOther(x.src);
+  return `<tr><td>${esc(x.campaign)}</td><td><span class="badge ${x.department==="Study Abroad"?"sa":"sl"}">${esc(x.department)}</span></td><td><b>${x.total}</b></td><td>${n(x.src.Meta)}</td><td>${n(x.src.WhatsApp)}</td><td>${n(x.src.Direct)}</td><td>${n(x.src.Website)}</td><td>${n(x.src.Referral)}</td><td>${other}</td></tr>`
+ }).join("")||'<tr><td colspan="9" class="empty">No lead data for this period.</td></tr>'
+}
+
+/* DISTRIBUTION */
+function counsellorSummary(agg){
+ const out={};agg.forEach(x=>{
+  const name=x.counsellor||"Unassigned";out[name]??={total:0,src:{}};
+  out[name].total+=x.count;out[name].src[x.source]=(out[name].src[x.source]||0)+x.count
+ });return out
+}
+function renderDistributionTeam(dept,totalId,rowsId,m,d){
+ const agg=filteredLead(m,d,dept),total=agg.reduce((a,x)=>a+x.count,0),map=counsellorSummary(agg);
+ $(totalId).textContent=total.toLocaleString();
+ $(rowsId).innerHTML=Object.entries(map).sort((a,b)=>b[1].total-a[1].total).map(([name,v])=>{
+  const top=Object.entries(v.src).sort((a,b)=>b[1]-a[1])[0]?.[0]||"—";
+  return `<tr><td>${esc(name)}</td><td><b>${v.total}</b></td><td>${total?(v.total/total*100).toFixed(1):0}%</td><td>${esc(top)}</td></tr>`
+ }).join("")||'<tr><td colspan="4" class="empty">No distributed leads for this period.</td></tr>'
+}
+function renderDistribution(){
+ const m=$("distMonth").value,d=$("distDay").value;
+ renderDistributionTeam("Study Abroad","distSATotal","distSARows",m,d);
+ renderDistributionTeam("SLICM","distSLTotal","distSLRows",m,d);
+ const base=filteredLead(m,""),days={};
+ base.forEach(x=>{if(!x.date)return;days[x.date]??={sa:0,sl:0};if(x.department==="Study Abroad")days[x.date].sa+=x.count;else if(x.department==="SLICM")days[x.date].sl+=x.count});
+ $("dailyDistributionRows").innerHTML=Object.entries(days).sort((a,b)=>b[0].localeCompare(a[0])).map(([date,v])=>`<tr><td>${new Date(date+"T00:00:00").toLocaleDateString("en",{day:"numeric",month:"short",year:"numeric"})}</td><td>${v.sa}</td><td>${v.sl}</td><td><b>${v.sa+v.sl}</b></td></tr>`).join("")||'<tr><td colspan="4" class="empty">No daily data for this month.</td></tr>'
+}
+
+/* CSV / XLSX */
 function csvParse(text){
  const rows=[];let row=[],cell="",q=false;
  for(let i=0;i<text.length;i++){
   const ch=text[i],nx=text[i+1];
-  if(ch=='"'){
-   if(q&&nx=='"'){cell+='"';i++}else q=!q
-  }else if(ch==","&&!q){
-   row.push(cell);cell=""
-  }else if((ch=="\n"||ch=="\r")&&!q){
-   if(ch=="\r"&&nx=="\n")i++;
-   row.push(cell);rows.push(row);row=[];cell=""
-  }else cell+=ch
+  if(ch=='"'){if(q&&nx=='"'){cell+='"';i++}else q=!q}
+  else if(ch==","&&!q){row.push(cell);cell=""}
+  else if((ch=="\n"||ch=="\r")&&!q){if(ch=="\r"&&nx=="\n")i++;row.push(cell);rows.push(row);row=[];cell=""}
+  else cell+=ch
  }
  if(cell||row.length){row.push(cell);rows.push(row)}
-
- // Preserve duplicate headers instead of overwriting them.
- // Example in counsellor sheets: Date, ... First Follow Up, Date, Second Follow up, Date...
- const rawHeaders=rows.shift()||[], seen={}, headers=rawHeaders.map((h,i)=>{
-  let key=String(h??"").trim();
-  if(!key) key="__blank_"+i;
-  const base=key;
-  seen[base]=(seen[base]||0)+1;
-  if(seen[base]>1) key=base+"__"+seen[base];
-  return key
+ const rawHeaders=rows.shift()||[],seen={},headers=rawHeaders.map((h,i)=>{
+  let key=String(h??"").trim();if(!key)key="__blank_"+i;const base=key;seen[base]=(seen[base]||0)+1;if(seen[base]>1)key=base+"__"+seen[base];return key
  });
-
- return rows
-  .filter(r=>r.some(x=>String(x??"").trim()))
-  .map(r=>{
-   const obj={};
-   headers.forEach((k,i)=>obj[k]=r[i]??"");
-   return obj
-  })
+ return rows.filter(r=>r.some(x=>String(x??"").trim())).map(r=>{const obj={};headers.forEach((k,i)=>obj[k]=r[i]??"");return obj})
 }
 async function readFileRows(file,sheetName){
  if(file.name.toLowerCase().endsWith(".csv")){
   const buf=await file.arrayBuffer();let text;
-  for(const enc of ["utf-8","windows-1252"]){try{text=new TextDecoder(enc,{fatal:true}).decode(buf);break}catch(e){}}
-  if(!text)text=new TextDecoder("windows-1252").decode(buf);return {rows:csvParse(text),sheets:["CSV"]}
+  for(const enc of ["utf-8","utf-16le","windows-1252"]){try{text=new TextDecoder(enc,{fatal:true}).decode(buf);if(text.includes(",")||text.includes("\t"))break}catch(e){}}
+  if(!text)text=new TextDecoder("windows-1252").decode(buf);
+  /* Some exported CSVs are UTF-16LE without a BOM */
+  const commaCount=(text.match(/,/g)||[]).length;
+  if(commaCount<5){
+   try{const t2=new TextDecoder("utf-16le").decode(buf);if((t2.match(/,/g)||[]).length>commaCount)text=t2}catch(e){}
+  }
+  return{rows:csvParse(text),sheets:["CSV"]}
  }
- if(!window.XLSX)throw new Error("Excel reader library could not load. Please check your internet connection.");
+ if(!window.XLSX)throw new Error("Excel reader library could not load. Check your internet connection.");
  const wb=XLSX.read(await file.arrayBuffer(),{type:"array",cellDates:true});
  const use=sheetName&&wb.SheetNames.includes(sheetName)?sheetName:wb.SheetNames[0];
  return{rows:XLSX.utils.sheet_to_json(wb.Sheets[use],{defval:""}),sheets:wb.SheetNames}
 }
-$("importDept").onchange=()=>{$("saExtra").style.display=$("importDept").value==="Study Abroad"?"block":"none";$("slicmExtra").style.display=$("importDept").value==="SLICM"?"block":"none"; if($("importDept").value==="SLICM")loadSlicmSheets()};
+$("importDept").onchange=()=>{$("saExtra").style.display=$("importDept").value==="Study Abroad"?"block":"none";$("slicmExtra").style.display=$("importDept").value==="SLICM"?"block":"none";if($("importDept").value==="SLICM")loadSlicmSheets()};
 $("leadFiles").onchange=()=>{if($("importDept").value==="SLICM")loadSlicmSheets()};
 async function loadSlicmSheets(){
  const f=$("leadFiles").files[0];if(!f||f.name.toLowerCase().endsWith(".csv")){setSelect($("slicmSheet"),["CSV"],false);return}
@@ -394,105 +590,165 @@ $("previewBtn").onclick=async()=>{
   try{
    const result=await readFileRows(file,dept==="SLICM"?$("slicmSheet").value:null),rows=result.rows;
    let usable=0,dupes=0,invalid=0,rawRows=rows.length;
-   rows.forEach((r,idx)=>{
+   rows.forEach(r=>{
     let date,source,campaign,counsellor,country,name,phone;
     if(dept==="Study Abroad"){
      date=parseDate(getField(r,["Date","Lead Date","Received Date","Created Date"]));
-     const rawSource=getField(r,["Channel","Lead Source","Source","Base"]);
-     source=sourceCategory(dept,rawSource);
+     source=sourceCategory(dept,getField(r,["Channel","Lead Source","Source","Base"]));
      campaign=String(getField(r,["Campaign M/G","Campaign MG","Campaign M G","Campaign","Campaign Name","Campaign Details","CAMP DETAILS"])||"Unspecified Campaign").trim()||"Unspecified Campaign";
      counsellor=String(getField(r,["Counsellor","Counsellors","Assigned Counsellor","Contacted By"])||$("importCounsellor").value||"").trim();
      country=String(getField(r,["Country","Destination","Country / Destination"])||$("importCountry").value||"").trim();
-     name=getField(r,["Name","Student Name","Lead Name"])||"";
-     phone=getField(r,["Contact Number","Mobile Number","Mobile","Phone","Phone Number"])||"";
+     name=getField(r,["Name","Student Name","Lead Name"])||"";phone=getField(r,["Contact Number","Mobile Number","Mobile","Phone","Phone Number"])||""
     }else{
      date=parseDate(getField(r,["Date","Lead Date","Received Date","Created Date"]));
-     const rawSource=getField(r,["BASE","Channel","Lead Source","Source"]);
-     source=sourceCategory(dept,rawSource);
+     source=sourceCategory(dept,getField(r,["BASE","Channel","Lead Source","Source"]));
      campaign=String(getField(r,["CAMP DETAILS","Campaign M/G","Campaign","Campaign Name","Campaign Details"])||"Unspecified Campaign").trim()||"Unspecified Campaign";
-     counsellor=String(getField(r,["Counsellors","Counsellor","Contacted By","Assigned Counsellor"])||"").trim();
-     country="";
-     name=getField(r,["Name","Student Name","Lead Name"])||"";
-     phone=getField(r,["Contact Number","Mobile Number","Mobile","Phone","Phone Number"])||"";
+     counsellor=String(getField(r,["Counsellors","Counsellor","Contacted By","Assigned Counsellor"])||"").trim();country="";
+     name=getField(r,["Name","Student Name","Lead Name"])||"";phone=getField(r,["Contact Number","Mobile Number","Mobile","Phone","Phone Number"])||""
     }
     if(!date){invalid++;return}
-    const month=monthKey(date);
-    // Management lead count is based on a monthly unique lead.
-    // Prefer phone number; if no phone exists, fall back to name+date.
-    const identity=norm(phone)?("p:"+norm(phone)):("n:"+norm(name)+"|d:"+date);
-    const fp=hashStr([dept,month,identity].join("|"));
+    const month=monthKey(date),identity=norm(phone)?("p:"+norm(phone)):("n:"+norm(name)+"|d:"+date),fp=hashStr([dept,month,identity].join("|"));
     const duplicate=db.fingerprints.includes(fp)||previewRows.some(x=>x.fp===fp);if(duplicate)dupes++;
     previewRows.push({department:dept,date,month,source,campaign,counsellor,country,fp,duplicate,file:file.name});usable++
    });
    fileStats.push({file:file.name,rawRows,usable,dupes,invalid,importable:usable-dupes})
   }catch(e){warnings.push(file.name+": "+e.message)}
  }
- const fresh=previewRows.filter(x=>!x.duplicate);
- const months={};fresh.forEach(x=>months[x.month]=(months[x.month]||0)+1);
- const sources={};fresh.forEach(x=>sources[x.source]=(sources[x.source]||0)+1);
- const campaigns={};fresh.forEach(x=>campaigns[x.campaign]=(campaigns[x.campaign]||0)+1);
+ const fresh=previewRows.filter(x=>!x.duplicate),months={},sources={},campaigns={},days={};
+ fresh.forEach(x=>{months[x.month]=(months[x.month]||0)+1;sources[x.source]=(sources[x.source]||0)+1;campaigns[x.campaign]=(campaigns[x.campaign]||0)+1;days[x.date]=(days[x.date]||0)+1});
  $("previewBox").innerHTML=`
-  ${warnings.length?'<div class="warnbox">'+warnings.map(esc).join("<br>")+'</div>':""}
-  <div class="grid grid-6">
-   <div class="kpi"><div class="label">RAW ROWS</div><div class="value">${fileStats.reduce((a,x)=>a+x.rawRows,0)}</div></div>
-   <div class="kpi teal"><div class="label">VALID DATED ROWS</div><div class="value">${previewRows.length}</div></div>
-   <div class="kpi orange"><div class="label">DUPLICATES SKIPPED</div><div class="value">${previewRows.length-fresh.length}</div></div>
-   <div class="kpi green"><div class="label">UNIQUE LEADS TO IMPORT</div><div class="value">${fresh.length}</div></div>
-   <div class="kpi purple"><div class="label">MONTHS</div><div class="value">${Object.keys(months).length}</div></div>
-   <div class="kpi"><div class="label">CAMPAIGNS</div><div class="value">${Object.keys(campaigns).length}</div></div>
-  </div>
-  <div class="grid grid-2" style="margin-top:12px">
-   <div><b>Month breakdown</b><div class="note">${Object.entries(months).sort((a,b)=>new Date("1 "+b[0])-new Date("1 "+a[0])).map(([k,v])=>`${esc(k)}: <b>${v}</b>`).join("<br>")||"None"}</div></div>
-   <div><b>Source breakdown</b><div class="note">${Object.entries(sources).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`${esc(k)}: <b>${v}</b>`).join("<br>")||"None"}</div></div>
-  </div>
-  <hr><div class="note"><b>Import audit:</b><br>${fileStats.map(x=>`${esc(x.file)} — Raw rows: <b>${x.rawRows}</b> • Valid dated rows: <b>${x.usable}</b> • Duplicates: <b>${x.dupes}</b> • Invalid/no date: <b>${x.invalid}</b> • Unique leads to import: <b>${x.importable}</b>`).join("<br>")}</div>`;
+ ${warnings.length?'<div class="warnbox">'+warnings.map(esc).join("<br>")+'</div>':""}
+ <div class="grid grid-6">
+  <div class="kpi"><div class="label">RAW ROWS</div><div class="value">${fileStats.reduce((a,x)=>a+x.rawRows,0)}</div></div>
+  <div class="kpi teal"><div class="label">VALID DATED</div><div class="value">${previewRows.length}</div></div>
+  <div class="kpi orange"><div class="label">DUPLICATES</div><div class="value">${previewRows.length-fresh.length}</div></div>
+  <div class="kpi green"><div class="label">UNIQUE TO IMPORT</div><div class="value">${fresh.length}</div></div>
+  <div class="kpi purple"><div class="label">MONTHS</div><div class="value">${Object.keys(months).length}</div></div>
+  <div class="kpi"><div class="label">CAMPAIGNS</div><div class="value">${Object.keys(campaigns).length}</div></div>
+ </div>
+ <div class="grid grid-3" style="margin-top:12px">
+  <div><b>Month Breakdown</b><div class="note">${Object.entries(months).sort((a,b)=>new Date("1 "+b[0])-new Date("1 "+a[0])).map(([k,v])=>`${esc(k)}: <b>${v}</b>`).join("<br>")||"None"}</div></div>
+  <div><b>Source Breakdown</b><div class="note">${Object.entries(sources).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`${esc(k)}: <b>${v}</b>`).join("<br>")||"None"}</div></div>
+  <div><b>Recent Daily Counts</b><div class="note">${Object.entries(days).sort((a,b)=>b[0].localeCompare(a[0])).slice(0,10).map(([k,v])=>`${esc(k)}: <b>${v}</b>`).join("<br>")||"None"}</div></div>
+ </div>
+ <hr><div class="note"><b>Import Audit:</b><br>${fileStats.map(x=>`${esc(x.file)} — Raw: <b>${x.rawRows}</b> • Valid dated: <b>${x.usable}</b> • Duplicates: <b>${x.dupes}</b> • Invalid/no date: <b>${x.invalid}</b> • Unique to import: <b>${x.importable}</b>`).join("<br>")}</div>`;
  $("importActions").style.display=fresh.length?"flex":"none"
 };
 $("confirmImport").onclick=()=>{
  const fresh=previewRows.filter(x=>!x.duplicate&&!db.fingerprints.includes(x.fp));if(!fresh.length)return alert("No new rows to import.");
- fresh.forEach(x=>{addAgg(x);db.fingerprints.push(x.fp)});
+ fresh.forEach(x=>{
+  addAgg(x);db.fingerprints.push(x.fp);
+  if(x.counsellor){
+   const list=x.department==="Study Abroad"?db.counsellors.studyAbroad:db.counsellors.slicm;
+   if(!list.includes(x.counsellor))list.push(x.counsellor)
+  }
+ });
+ db.counsellors.studyAbroad.sort();db.counsellors.slicm.sort();
  const grouped={};fresh.forEach(x=>{const k=x.file+"|"+x.department;grouped[k]=(grouped[k]||0)+1});
  Object.entries(grouped).forEach(([k,count])=>{const [file,department]=k.split("|");db.imports.push({id:uid("IMP"),when:new Date().toISOString(),file,department,count})});
- saveDb();previewRows=[];$("previewBox").innerHTML='<div class="notice">Import complete. The dashboard has been updated.</div>';$("importActions").style.display="none"
+ saveDb();previewRows=[];$("previewBox").innerHTML='<div class="notice">Import complete. Lead Data and Distribution have been updated.</div>';$("importActions").style.display="none"
 };
 
+/* CAMPAIGNS - LEAD ONLY */
+function renderCampaigns(){
+ const m=$("campMonth").value,d=$("campDay").value,dep=$("campDept").value,map=campaignMap(filteredLead(m,d,dep));
+ $("campaignRows").innerHTML=Object.values(map).sort((a,b)=>b.total-a.total).map(x=>`<tr><td>${esc(x.campaign)}</td><td><span class="badge ${x.department==="Study Abroad"?"sa":"sl"}">${esc(x.department)}</span></td><td><b>${x.total}</b></td><td>${n(x.src.Meta)}</td><td>${n(x.src.WhatsApp)}</td><td>${n(x.src.Direct)}</td><td>${n(x.src.Website)}</td><td>${n(x.src.Referral)}</td><td>${sourceOther(x.src)}</td></tr>`).join("")||'<tr><td colspan="9" class="empty">No campaign data.</td></tr>'
+}
+
+/* FINANCE PASSWORD */
+function getFinanceAuth(){try{return JSON.parse(localStorage.getItem(FIN_AUTH_KEY))}catch(e){return null}}
+function financeUnlocked(){return sessionStorage.getItem(FIN_SESSION_KEY)==="1"}
+function randomSalt(){const a=new Uint8Array(16);crypto.getRandomValues(a);return [...a].map(x=>x.toString(16).padStart(2,"0")).join("")}
+async function digestText(s){
+ if(window.crypto&&crypto.subtle){
+  const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")
+ }
+ return hashStr(s)
+}
+async function setFinancePassword(pass){
+ const salt=randomSalt(),hash=await digestText(salt+pass);localStorage.setItem(FIN_AUTH_KEY,JSON.stringify({salt,hash}));sessionStorage.setItem(FIN_SESSION_KEY,"1");renderFinanceGate()
+}
+async function verifyFinancePassword(pass){
+ const a=getFinanceAuth();if(!a)return false;return (await digestText(a.salt+pass))===a.hash
+}
+function renderFinanceGate(){
+ const configured=!!getFinanceAuth(),unlocked=financeUnlocked();
+ $("financeGate").classList.toggle("hidden",unlocked);
+ $("financeContent").classList.toggle("hidden",!unlocked);
+ if(!unlocked){
+  $("financeSetupBox").classList.toggle("hidden",configured);
+  $("financeLoginBox").classList.toggle("hidden",!configured)
+ }else renderFinance()
+}
+$("setupFinancePass").onclick=async()=>{
+ const a=$("finSetupPass").value,b=$("finSetupConfirm").value;if(a.length<4)return alert("Use at least 4 characters.");if(a!==b)return alert("Passwords do not match.");
+ await setFinancePassword(a);$("finSetupPass").value=$("finSetupConfirm").value=""
+};
+$("financeLoginBtn").onclick=async()=>{if(await verifyFinancePassword($("finLoginPass").value)){sessionStorage.setItem(FIN_SESSION_KEY,"1");$("finLoginPass").value="";renderFinanceGate()}else alert("Incorrect Finance password.")};
+function lockFinance(){sessionStorage.removeItem(FIN_SESSION_KEY);renderFinanceGate()}
+$("financeLockBtn").onclick=lockFinance;$("financeLockBtn2").onclick=lockFinance;
+$("changeFinancePass").onclick=async()=>{
+ const current=prompt("Enter current Finance password:");if(current===null)return;if(!(await verifyFinancePassword(current)))return alert("Current password is incorrect.");
+ const next=prompt("Enter new Finance password (minimum 4 characters):");if(next===null)return;if(next.length<4)return alert("Use at least 4 characters.");
+ const confirmPass=prompt("Confirm new Finance password:");if(confirmPass!==next)return alert("Passwords do not match.");
+ await setFinancePassword(next);alert("Finance password changed.")
+};
+
+/* FINANCE */
 $("finType").onchange=()=>{$("finDateWrap").style.display=$("finType").value==="Daily"?"block":"none";$("finMonthWrap").style.display=$("finType").value==="Monthly Total"?"block":"none"};
 $("finDept").onchange=renderFilters;
 $("financeForm").onsubmit=e=>{
- e.preventDefault();let month,period;if($("finType").value==="Daily"){if(!$("finDate").value)return alert("Select a date.");month=monthKey($("finDate").value);period=$("finDate").value}else{if(!$("finMonth").value)return alert("Select a month.");month=monthKey($("finMonth").value+"-01");period=$("finMonth").value}
+ e.preventDefault();let month,period;
+ if($("finType").value==="Daily"){if(!$("finDate").value)return alert("Select a date.");month=monthKey($("finDate").value);period=$("finDate").value}
+ else{if(!$("finMonth").value)return alert("Select a month.");month=monthKey($("finMonth").value+"-01");period=$("finMonth").value}
  db.finance.push({id:uid("FIN"),type:$("finType").value,period,month,department:$("finDept").value,campaign:$("finCampaign").value,platform:$("finPlatform").value,spend:n($("finSpend").value),notes:$("finNotes").value.trim()});
- $("finSpend").value="";$("finNotes").value="";saveDb();$("financeMsg").style.display="block";setTimeout(()=>$("financeMsg").style.display="none",1600)
+ $("finSpend").value="";$("finNotes").value="";saveDb();$("financeMsg").style.display="block";setTimeout(()=>$("financeMsg").style.display="none",1500)
 };
 function delFin(id){if(confirm("Delete this spend record?")){db.finance=db.finance.filter(x=>x.id!==id);saveDb()}}window.delFin=delFin;
 function renderFinance(){
- const m=$("finFilterMonth").value,d=$("finFilterDept").value,fin=filteredFinance(m,d),agg=filteredLead(m,d),leads=agg.reduce((a,x)=>a+x.count,0),sp=fin.reduce((a,x)=>a+n(x.spend),0);
- $("fSpend").textContent=money(sp);$("fLeads").textContent=leads.toLocaleString();$("fCpl").textContent=money(leads?sp/leads:0);$("fCampaigns").textContent=unique(fin.map(x=>x.campaign)).length;
+ if(!financeUnlocked())return;
+ const m=$("finFilterMonth").value,d=$("finFilterDay").value,dep=$("finFilterDept").value,fin=filteredFinance(m,d,dep),agg=filteredLead(m,d,dep),leads=agg.reduce((a,x)=>a+x.count,0),sp=fin.reduce((a,x)=>a+n(x.spend),0);
+ $("fSpend").textContent=money(sp);$("fLeads").textContent=leads.toLocaleString();$("fCpl").textContent=money(leads?sp/leads:0);$("fCampaigns").textContent=unique(fin.map(x=>x.department+"¦"+x.campaign)).length;
+ const cmap={};
+ agg.forEach(x=>{const k=x.department+"¦"+x.campaign;cmap[k]??={department:x.department,campaign:x.campaign,leads:0,spend:0};cmap[k].leads+=x.count});
+ fin.forEach(x=>{if(x.campaign==="Unallocated / General Spend")return;const k=x.department+"¦"+x.campaign;cmap[k]??={department:x.department,campaign:x.campaign,leads:0,spend:0};cmap[k].spend+=n(x.spend)});
+ $("financeCampaignRows").innerHTML=Object.values(cmap).sort((a,b)=>b.spend-a.spend||b.leads-a.leads).map(x=>`<tr><td>${esc(x.campaign)}</td><td><span class="badge ${x.department==="Study Abroad"?"sa":"sl"}">${esc(x.department)}</span></td><td>${x.leads}</td><td><b>${money(x.spend)}</b></td><td>${money(x.leads?x.spend/x.leads:0)}</td></tr>`).join("")||'<tr><td colspan="5" class="empty">No campaign finance data.</td></tr>';
  $("financeRows").innerHTML=[...db.finance].sort((a,b)=>String(b.period).localeCompare(String(a.period))).map(x=>`<tr><td>${esc(x.period)}</td><td>${esc(x.department)}</td><td>${esc(x.campaign)}</td><td>${esc(x.platform)}</td><td><b>${money(x.spend)}</b></td><td>${esc(x.notes)}</td><td><button class="btn danger small" onclick="delFin('${x.id}')">Delete</button></td></tr>`).join("")||'<tr><td colspan="7" class="empty">No spend entries yet.</td></tr>'
 }
-function renderCampaigns(){
- const m=$("campMonth").value,d=$("campDept").value,agg=filteredLead(m,d),fin=filteredFinance(m,d),map={};
- agg.forEach(x=>{let k=x.department+"¦"+x.campaign;map[k]??={department:x.department,campaign:x.campaign,leads:0,src:{},spend:0};map[k].leads+=x.count;map[k].src[x.source]=(map[k].src[x.source]||0)+x.count});
- fin.forEach(x=>{if(x.campaign==="Unallocated / General Spend")return;let k=x.department+"¦"+x.campaign;map[k]??={department:x.department,campaign:x.campaign,leads:0,src:{},spend:0};map[k].spend+=n(x.spend)});
- $("campaignRows").innerHTML=Object.values(map).sort((a,b)=>b.leads-a.leads).map(x=>`<tr><td>${esc(x.campaign)}</td><td><span class="badge ${x.department==="Study Abroad"?"sa":"sl"}">${esc(x.department)}</span></td><td><b>${x.leads}</b></td><td>${n(x.src.Meta)}</td><td>${n(x.src.WhatsApp)}</td><td>${n(x.src.Direct)}</td><td>${n(x.src.Website)}</td><td>${money(x.spend)}</td><td>${money(x.leads?x.spend/x.leads:0)}</td></tr>`).join("")||'<tr><td colspan="9" class="empty">No campaign data yet.</td></tr>'
+
+/* COUNSELLOR SETTINGS */
+function addPerson(list,name){const v=name.trim();if(v&&!list.includes(v)){list.push(v);list.sort();saveDb()}}
+$("saCounsellorForm").onsubmit=e=>{e.preventDefault();addPerson(db.counsellors.studyAbroad,$("newSACounsellor").value);$("newSACounsellor").value=""};
+$("slCounsellorForm").onsubmit=e=>{e.preventDefault();addPerson(db.counsellors.slicm,$("newSLCounsellor").value);$("newSLCounsellor").value=""};
+function removeCounsellor(team,name){if(confirm(`Remove ${name} from the ${team==="studyAbroad"?"Study Abroad":"SLICM"} dropdown? Existing imported counts will stay.`)){db.counsellors[team]=db.counsellors[team].filter(x=>x!==name);saveDb()}}
+window.removeCounsellor=removeCounsellor;
+function renderCounsellorSettings(){
+ $("saCounsellorList").innerHTML=db.counsellors.studyAbroad.map(nm=>`<span class="person-chip">${esc(nm)} <button onclick='removeCounsellor("studyAbroad",${JSON.stringify(nm)})'>×</button></span>`).join("");
+ $("slCounsellorList").innerHTML=db.counsellors.slicm.map(nm=>`<span class="person-chip">${esc(nm)} <button onclick='removeCounsellor("slicm",${JSON.stringify(nm)})'>×</button></span>`).join("")||'<span class="note">No SLICM counsellors added yet.</span>'
 }
+
+/* DATA / BACKUP */
 function renderData(){
  $("dataSA").textContent=db.leadAgg.filter(x=>x.department==="Study Abroad").reduce((a,x)=>a+x.count,0).toLocaleString();
  $("dataSL").textContent=db.leadAgg.filter(x=>x.department==="SLICM").reduce((a,x)=>a+x.count,0).toLocaleString();
  $("importHistory").innerHTML=[...db.imports].reverse().slice(0,12).map(x=>`<div class="file-chip"><div><b>${esc(x.file)}</b><div class="note">${esc(x.department)} • ${new Date(x.when).toLocaleString()}</div></div><span class="badge good">${x.count} new</span></div>`).join("")||'<div class="empty">No imports yet.</div>'
 }
-["dashMonth","dashDept","dashCountry"].forEach(id=>$(id).onchange=renderDashboard);
-["finFilterMonth","finFilterDept"].forEach(id=>$(id).onchange=renderFinance);
-["campMonth","campDept"].forEach(id=>$(id).onchange=renderCampaigns);
-
 $("exportBackup").onclick=()=>{const a=document.createElement("a"),b=new Blob([JSON.stringify(db,null,2)],{type:"application/json"});a.href=URL.createObjectURL(b);a.download="AIA_Marketing_Backup_"+new Date().toISOString().slice(0,10)+".json";a.click();URL.revokeObjectURL(a.href)};
-$("importBackup").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const x=JSON.parse(await f.text());if(!x.leadAgg||!x.finance)throw 0;db=x;saveDb();alert("Backup restored.")}catch{alert("Invalid backup.")}e.target.value=""};
+$("importBackup").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const x=JSON.parse(await f.text());if(!x.leadAgg||!x.finance)throw 0;db=x;db.counsellors=db.counsellors||{studyAbroad:[...DEFAULT_SA],slicm:[]};saveDb();alert("Backup restored.")}catch{alert("Invalid backup.")}e.target.value=""};
 $("exportReport").onclick=()=>{
- const rows=[["Department","Month","Country","Counsellor","Campaign","Source","Lead Count"],...db.leadAgg.map(x=>[x.department,x.month,x.country,x.counsellor,x.campaign,x.source,x.count])];
+ const rows=[["Department","Date","Month","Country","Counsellor","Campaign","Source","Lead Count"],...db.leadAgg.map(x=>[x.department,x.date,x.month,x.country,x.counsellor,x.campaign,x.source,x.count])];
  const csv=rows.map(r=>r.map(v=>`"${String(v??"").replaceAll('"','""')}"`).join(",")).join("\n"),a=document.createElement("a"),b=new Blob([csv],{type:"text/csv"});a.href=URL.createObjectURL(b);a.download="AIA_Marketing_Summary.csv";a.click();URL.revokeObjectURL(a.href)
 };
-$("resetAll").onclick=()=>{if(confirm("Delete all imported aggregates, duplicate fingerprints and finance entries from this browser? Export a backup first if needed.")){db=structuredClone(defaultDb);saveDb()}};
+$("resetAll").onclick=()=>{if(confirm("Delete all imported lead aggregates, duplicate fingerprints and finance records from this browser?")){db=structuredClone(defaultDb);saveDb()}};
 
-function renderAll(){renderFilters();renderDashboard();renderFinance();renderCampaigns();renderData()}
+/* EVENTS */
+[["dashMonth","dashDay",renderDashboard],["leadMonth","leadDay",renderLeadData],["distMonth","distDay",renderDistribution],["campMonth","campDay",renderCampaigns],["finFilterMonth","finFilterDay",renderFinance]].forEach(([m,d,fn])=>{
+ $(m).onchange=fn;$(d).onchange=()=>{syncMonthFromDay(d,m);fn()}
+});
+$("leadDept").onchange=renderLeadData;$("leadCountry").onchange=renderLeadData;$("finFilterDept").onchange=renderFinance;
+
+/* RENDER */
+function renderAll(){renderFilters();renderDashboard();renderLeadData();renderDistribution();renderCampaigns();renderCounsellorSettings();renderData();renderFinanceGate()}
 $("finDate").value=new Date().toISOString().slice(0,10);$("finMonth").value=new Date().toISOString().slice(0,7);
 renderAll();
 </script>
