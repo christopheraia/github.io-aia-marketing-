@@ -76,6 +76,7 @@ hr{border:0;border-top:1px solid var(--line);margin:17px 0}
    <div class="filters">
     <div class="field"><label>Month</label><select id="dashMonth"></select></div>
     <div class="field"><label>Exact Day (optional)</label><input id="dashDay" type="date"></div>
+    <div class="field"><label>Counsellor</label><select id="dashCounsellor"></select></div>
    </div>
   </div>
  </div>
@@ -424,11 +425,12 @@ function allMonths(){
  const current=new Date().toLocaleString("en",{month:"short",year:"numeric"});if(!a.includes(current))a.push(current);
  return unique(a).sort((a,b)=>new Date("1 "+b)-new Date("1 "+a))
 }
-function filteredLead(month,day="",dept="All",country="All"){
+function filteredLead(month,day="",dept="All",country="All",counsellor="All"){
  return db.leadAgg.filter(x=>
   (!day?(month==="All"||x.month===month):x.date===day)&&
   (dept==="All"||x.department===dept)&&
-  (country==="All"||x.country===country)
+  (country==="All"||x.country===country)&&
+  (counsellor==="All"||x.counsellor===counsellor)
  )
 }
 function filteredFinance(month,day="",dept="All"){
@@ -481,6 +483,14 @@ function renderFilters(){
  ["dashMonth","leadMonth","distMonth","campMonth","finFilterMonth"].forEach(id=>setSelect($(id),months,true,$(id).value||current));
  const countries=unique(db.leadAgg.filter(x=>x.department==="Study Abroad").map(x=>x.country));
  setSelect($("leadCountry"),countries,true,$("leadCountry").value||"All");
+
+ const dashboardCounsellors=unique([
+  ...db.counsellors.studyAbroad,
+  ...db.counsellors.slicm,
+  ...db.leadAgg.map(x=>x.counsellor)
+ ]);
+ setSelect($("dashCounsellor"),dashboardCounsellors,true,$("dashCounsellor").value||"All");
+
  setSelect($("importCounsellor"),db.counsellors.studyAbroad,false,$("importCounsellor").value);
  const camps=unique(db.leadAgg.filter(x=>x.department===$("finDept").value).map(x=>x.campaign));
  setSelect($("finCampaign"),["Unallocated / General Spend",...camps],false,$("finCampaign").value)
@@ -488,12 +498,15 @@ function renderFilters(){
 
 /* DASHBOARD */
 function renderDashboard(){
- const m=$("dashMonth").value,d=$("dashDay").value,all=filteredLead(m,d),sa=all.filter(x=>x.department==="Study Abroad"),sl=all.filter(x=>x.department==="SLICM");
+ const m=$("dashMonth").value,d=$("dashDay").value,c=$("dashCounsellor").value||"All",
+       all=filteredLead(m,d,"All","All",c),
+       sa=all.filter(x=>x.department==="Study Abroad"),
+       sl=all.filter(x=>x.department==="SLICM");
  $("dTotal").textContent=all.reduce((a,x)=>a+x.count,0).toLocaleString();
  $("dSA").textContent=sa.reduce((a,x)=>a+x.count,0).toLocaleString();
  $("dSL").textContent=sl.reduce((a,x)=>a+x.count,0).toLocaleString();
  $("dCampaigns").textContent=unique(all.map(x=>x.department+"¦"+x.campaign)).length;
- $("dPeriod").textContent=periodText(m,d);
+ $("dPeriod").textContent=periodText(m,d)+(c!=="All"?" • "+c:"");
  $("dashboardDeptCards").innerHTML=["Study Abroad","SLICM"].map(dep=>{
   const a=all.filter(x=>x.department===dep),t=expandTotals(a);
   return `<div class="dept-card"><span class="badge ${dep==="Study Abroad"?"sa":"sl"}">${dep}</span><div class="big">${t.total.toLocaleString()} leads</div><div class="note">Meta ${n(t.bySource.Meta)} • WhatsApp ${n(t.bySource.WhatsApp)} • Direct ${n(t.bySource.Direct)} • Website ${n(t.bySource.Website)} • Other/DB ${sourceOther(t.bySource)}</div></div>`
@@ -745,6 +758,7 @@ $("resetAll").onclick=()=>{if(confirm("Delete all imported lead aggregates, dupl
 [["dashMonth","dashDay",renderDashboard],["leadMonth","leadDay",renderLeadData],["distMonth","distDay",renderDistribution],["campMonth","campDay",renderCampaigns],["finFilterMonth","finFilterDay",renderFinance]].forEach(([m,d,fn])=>{
  $(m).onchange=fn;$(d).onchange=()=>{syncMonthFromDay(d,m);fn()}
 });
+$("dashCounsellor").onchange=renderDashboard;
 $("leadDept").onchange=renderLeadData;$("leadCountry").onchange=renderLeadData;$("finFilterDept").onchange=renderFinance;
 
 /* RENDER */
